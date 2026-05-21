@@ -10,9 +10,11 @@ let rodada = 0;
 
 /* Emojis possíveis */
 const emojis = [
-"7️⃣",
+"🎱",
+"🦊",
 "🧴",
 "💊",
+"🍒",
 "💎",
 "💰",
 "🍀",
@@ -193,6 +195,21 @@ function result(){
 
             /* Vibração */
             navigator.vibrate?.([200,100,200]);
+                /* ================================= */
+                /* CONFETE */
+                /* ================================= */
+
+             confetti({
+
+             particleCount: 250,
+
+             spread: 180,
+
+             origin: { y: 0.6 }
+             
+                });
+
+}
 
         }
 
@@ -218,7 +235,7 @@ function result(){
     else if(rodada == 4){
 
         r1.innerHTML = "7️⃣";
-        r2.innerHTML = "7️⃣";
+        r2.innerHTML = "🍒";
         r3.innerHTML = "💀";
 
         /* Remove moedas */
@@ -244,9 +261,9 @@ function result(){
 
     else{
 
-        r1.innerHTML = "💀";
+        r1.innerHTML = "🎰";
         r2.innerHTML = "💀";
-        r3.innerHTML = "💀";
+        r3.innerHTML = "💸";
 
         /* Zera moedas */
         coins = 0;
