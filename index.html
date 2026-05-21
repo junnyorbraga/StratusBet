@@ -1,45 +1,61 @@
 <!DOCTYPE html>
+
+<!-- Define que o documento usa HTML5 -->
 <html lang="pt-BR">
 
 <head>
 
-<meta charset="UTF-8">
+    <!-- Define caracteres especiais -->
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Responsividade para celular -->
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
 
-<title>MEGA WIN</title>
+    <!-- Título da aba -->
+    <title>MEGA WIN</title>
 
-<!-- IMPORTA O CSS -->
-<link rel="stylesheet" href="style.css">
+    <!-- Importa o CSS externo -->
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<!-- SONS -->
+<!-- ===================================== -->
+<!-- ÁUDIOS DO JOGO -->
+<!-- ===================================== -->
 
+<!-- Som de girar -->
 <audio id="spinSound"
 src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3">
 </audio>
 
+<!-- Som de vitória -->
 <audio id="winSound"
 src="https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3">
 </audio>
 
+<!-- Som de jackpot -->
 <audio id="jackpotSound"
 src="https://assets.mixkit.co/active_storage/sfx/270/270-preview.mp3">
 </audio>
 
+<!-- Som de derrota -->
 <audio id="loseSound"
 src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3">
 </audio>
 
-<!-- JOGO -->
+<!-- ===================================== -->
+<!-- TELA PRINCIPAL DO JOGO -->
+<!-- ===================================== -->
 
 <div class="container" id="gameScreen">
 
+    <!-- Título principal -->
     <h1>🎰 MEGA WIN</h1>
 
+    <!-- Texto abaixo do título -->
     <div class="subtitle">
 
         Você recebeu <b>100 moedas grátis</b><br>
@@ -47,45 +63,59 @@ src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3">
 
     </div>
 
+    <!-- Caixa das moedas -->
     <div class="coins-box">
 
+        <!-- Quantidade de moedas -->
         <div class="coins" id="coins">
             100
         </div>
 
+        <!-- Texto auxiliar -->
         <div class="label">
             MOEDAS
         </div>
 
     </div>
 
+    <!-- Área dos slots -->
     <div class="slot">
 
+        <!-- Slot 1 -->
         <div class="reel" id="r1">❔</div>
+
+        <!-- Slot 2 -->
         <div class="reel" id="r2">❔</div>
+
+        <!-- Slot 3 -->
         <div class="reel" id="r3">❔</div>
 
     </div>
 
+    <!-- Botão -->
     <button onclick="play()" id="playBtn">
         JOGAR AGORA
     </button>
 
+    <!-- Área de mensagens -->
     <div class="message" id="message"></div>
 
 </div>
 
+<!-- ===================================== -->
 <!-- TELA FINAL -->
+<!-- ===================================== -->
 
 <div id="warningScreen">
 
+    <!-- Imagem final -->
     <img
     src="final.png"
     alt="Tela Final">
 
 </div>
 
-<!-- IMPORTA O JAVASCRIPT -->
+<!-- Importa o JavaScript -->
 <script src="script.js"></script>
 
 </body>

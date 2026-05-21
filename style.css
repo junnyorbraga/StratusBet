@@ -1,12 +1,24 @@
+/* ===================================== */
+/* RESET GERAL */
+/* ===================================== */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+
+    /* Fonte padrão */
     font-family:Arial, Helvetica, sans-serif;
 }
 
+/* ===================================== */
+/* BODY */
+/* Fundo principal */
+/* ===================================== */
+
 body{
 
+    /* Fundo degradê */
     background:
     radial-gradient(circle at top,#1a3200,#000 65%);
 
@@ -26,11 +38,17 @@ body{
 
 }
 
+/* ===================================== */
+/* EFEITO VERMELHO AO PERDER */
+/* ===================================== */
+
 .redFlash{
 
     animation:redPulse .8s infinite;
 
 }
+
+/* Animação do fundo vermelho */
 
 @keyframes redPulse{
 
@@ -48,6 +66,10 @@ body{
 
 }
 
+/* ===================================== */
+/* CONTAINER PRINCIPAL */
+/* ===================================== */
+
 .container{
 
     width:95%;
@@ -64,6 +86,7 @@ body{
 
     text-align:center;
 
+    /* Efeito neon */
     box-shadow:
     0 0 20px #39ff14,
     0 0 60px rgba(57,255,20,.5);
@@ -71,6 +94,10 @@ body{
     animation:glow 1.5s infinite alternate;
 
 }
+
+/* ===================================== */
+/* ANIMAÇÃO NEON */
+/* ===================================== */
 
 @keyframes glow{
 
@@ -92,6 +119,10 @@ body{
 
 }
 
+/* ===================================== */
+/* TÍTULO */
+/* ===================================== */
+
 h1{
 
     color:#ffe600;
@@ -104,6 +135,10 @@ h1{
 
 }
 
+/* ===================================== */
+/* SUBTÍTULO */
+/* ===================================== */
+
 .subtitle{
 
     color:#ccc;
@@ -113,6 +148,10 @@ h1{
     line-height:1.5;
 
 }
+
+/* ===================================== */
+/* CAIXA DAS MOEDAS */
+/* ===================================== */
 
 .coins-box{
 
@@ -128,6 +167,8 @@ h1{
 
 }
 
+/* Quantidade de moedas */
+
 .coins{
 
     font-size:60px;
@@ -138,6 +179,8 @@ h1{
 
 }
 
+/* Texto "MOEDAS" */
+
 .label{
 
     color:#aaa;
@@ -145,6 +188,10 @@ h1{
     margin-top:5px;
 
 }
+
+/* ===================================== */
+/* ÁREA DOS SLOTS */
+/* ===================================== */
 
 .slot{
 
@@ -157,6 +204,10 @@ h1{
     margin:25px 0;
 
 }
+
+/* ===================================== */
+/* CADA SLOT */
+/* ===================================== */
 
 .reel{
 
@@ -180,6 +231,10 @@ h1{
 
 }
 
+/* ===================================== */
+/* ANIMAÇÃO DOS SLOTS */
+/* ===================================== */
+
 .spin{
 
     animation:spin .12s infinite;
@@ -188,11 +243,23 @@ h1{
 
 @keyframes spin{
 
-    0%{transform:translateY(-6px);}
-    50%{transform:translateY(6px);}
-    100%{transform:translateY(-6px);}
+    0%{
+        transform:translateY(-6px);
+    }
+
+    50%{
+        transform:translateY(6px);
+    }
+
+    100%{
+        transform:translateY(-6px);
+    }
 
 }
+
+/* ===================================== */
+/* BOTÃO */
+/* ===================================== */
 
 button{
 
@@ -218,11 +285,17 @@ button{
 
 }
 
+/* Hover do botão */
+
 button:hover{
 
     transform:scale(1.03);
 
 }
+
+/* ===================================== */
+/* MENSAGENS */
+/* ===================================== */
 
 .message{
 
@@ -236,6 +309,8 @@ button:hover{
 
 }
 
+/* Cores */
+
 .green{
     color:#39ff14;
 }
@@ -247,6 +322,10 @@ button:hover{
 .yellow{
     color:#ffe600;
 }
+
+/* ===================================== */
+/* TELA FINAL */
+/* ===================================== */
 
 #warningScreen{
 
@@ -270,6 +349,8 @@ button:hover{
     padding:20px;
 
 }
+
+/* Imagem final */
 
 #warningScreen img{
 
