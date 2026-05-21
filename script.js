@@ -11,7 +11,7 @@ let rodada = 0;
 /* Emojis possíveis */
 const emojis = [
 "7️⃣",
-"🧴";
+"🧴",
 "💊",
 "💎",
 "💰",
