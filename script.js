@@ -11,6 +11,8 @@ let rodada = 0;
 /* Emojis possíveis */
 const emojis = [
 "7️⃣",
+"🧴";
+"💊",
 "💎",
 "💰",
 "🍀",
@@ -165,9 +167,9 @@ function result(){
     if(rodada <= 3){
 
         /* Mostra jackpot */
-        r1.innerHTML = "7️⃣";
-        r2.innerHTML = "7️⃣";
-        r3.innerHTML = "7️⃣";
+        r1.innerHTML = "🧴";
+        r2.innerHTML = "🧴";
+        r3.innerHTML = "🧴";
 
         /* Valores dos prêmios */
         let premio = [50,120,300][rodada-1];
