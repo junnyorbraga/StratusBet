@@ -189,7 +189,7 @@ function result(){
             playSounds("jackpot");
 
             setMessage(
-            `🎉 JACKPOT! +${premio} moedas`,
+            `🎉 SUPER PRÊMIO!!! +${premio} moedas`,
             "green"
             );
 
