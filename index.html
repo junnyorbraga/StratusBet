@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<!-- ========================================= -->
+<!-- CONFIGURAÇÕES BÁSICAS DA PÁGINA -->
+<!-- ========================================= -->
+
+<meta charset="UTF-8">
+
+<!-- RESPONSIVIDADE PARA CELULAR -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- TÍTULO DA ABA -->
+<title>MEGA WIN</title>
+
+<style>
+
+/* ========================================= */
+/* RESET GERAL */
+/* Remove margens e configura padrão */
+/* ========================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* ========================================= */
+/* ESTILO DO BODY */
+/* Fundo geral do jogo */
+/* ========================================= */
+
+body{
+
+    /* Fundo em degradê */
+    background:
+    radial-gradient(circle at top,#1a3200,#000 65%);
+
+    color:white;
+
+    height:100vh;
+
+    overflow:hidden;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    transition:background .3s;
+
+}
+
+/* ========================================= */
+/* FLASH VERMELHO */
+/* Efeito ao perder tudo */
+/* ========================================= */
+
+.redFlash{
+
+    animation:redPulse .8s infinite;
+
+}
+
+/* Animação do fundo vermelho */
+
+@keyframes redPulse{
+
+    0%{
+        background:#200;
+    }
+
+    50%{
+        background:#600;
+    }
+
+    100%{
+        background:#200;
+    }
+
+}
+
+/* ========================================= */
+/* CONTAINER PRINCIPAL DO JOGO */
+/* ========================================= */
+
+.container{
+
+    width:95%;
+
+    max-width:430px;
+
+    background:#0d0d0d;
+
+    border:3px solid #39ff14;
+
+    border-radius:25px;
+
+    padding:25px;
+
+    text-align:center;
+
+    box-shadow:
+    0 0 20px #39ff14,
+    0 0 60px rgba(57,255,20,.5);
+
+    animation:glow 1.5s infinite alternate;
+
+}
+
+/* ========================================= */
+/* ANIMAÇÃO NEON DO CONTAINER */
+/* ========================================= */
+
+@keyframes glow{
+
+    from{
+
+        box-shadow:
+        0 0 15px #39ff14,
+        0 0 30px rgba(57,255,20,.5);
+
+    }
+
+    to{
+
+        box-shadow:
+        0 0 25px #39ff14,
+        0 0 60px rgba(57,255,20,.9);
+
+    }
+
+}
+
+/* ========================================= */
+/* TÍTULO PRINCIPAL */
+/* ========================================= */
+
+h1{
+
+    color:#ffe600;
+
+    font-size:42px;
+
+    margin-bottom:10px;
+
+    text-shadow:0 0 15px #ffe600;
+
+}
+
+/* ========================================= */
+/* TEXTO ABAIXO DO TÍTULO */
+/* ========================================= */
+
+.subtitle{
+
+    color:#ccc;
+
+    margin-bottom:25px;
+
+    line-height:1.5;
+
+}
+
+/* ========================================= */
+/* ÁREA DAS MOEDAS */
+/* ========================================= */
+
+.coins-box{
+
+    background:#181818;
+
+    border-radius:20px;
+
+    padding:20px;
+
+    margin-bottom:25px;
+
+    border:2px solid #222;
+
+}
+
+/* VALOR DAS MOEDAS */
+
+.coins{
+
+    font-size:60px;
+
+    color:#39ff14;
+
+    font-weight:bold;
+
+}
+
+/* TEXTO "MOEDAS" */
+
+.label{
+
+    color:#aaa;
+
+    margin-top:5px;
+
+}
+
+/* ========================================= */
+/* ÁREA DOS SLOTS */
+/* ========================================= */
+
+.slot{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:10px;
+
+    margin:25px 0;
+
+}
+
+/* ========================================= */
+/* CADA SLOT INDIVIDUAL */
+/* ========================================= */
+
+.reel{
+
+    width:90px;
+
+    height:90px;
+
+    background:#1b1b1b;
+
+    border:3px solid #444;
+
+    border-radius:15px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:50px;
+
+}
+
+/* ========================================= */
+/* ANIMAÇÃO DOS SLOTS GIRANDO */
+/* ========================================= */
+
+.spin{
+
+    animation:spin .12s infinite;
+
+}
+
+/* Movimento dos slots */
+
+@keyframes spin{
+
+    0%{transform:translateY(-6px);}
+    50%{transform:translateY(6px);}
+    100%{transform:translateY(-6px);}
+
+}
+
+/* ========================================= */
+/* BOTÃO */
+/* ========================================= */
+
+button{
+
+    width:100%;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:#39ff14;
+
+    color:black;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+/* Hover do botão */
+
+button:hover{
+
+    transform:scale(1.03);
+
+}
+
+/* ========================================= */
+/* ÁREA DE MENSAGEM */
+/* ========================================= */
+
+.message{
+
+    margin-top:20px;
+
+    min-height:60px;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+}
+
+/* ========================================= */
+/* CORES DAS MENSAGENS */
+/* ========================================= */
+
+.green{
+    color:#39ff14;
+}
+
+.red{
+    color:#ff4a4a;
+}
+
+.yellow{
+    color:#ffe600;
+}
+
+/* ========================================= */
+/* TELA FINAL */
+/* ========================================= */
+
+#warningScreen{
+
+    display:none;
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:#000;
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:9999;
+
+    padding:20px;
+
+}
+
+/* IMAGEM FINAL */
+
+#warningScreen img{
+
+    max-width:100%;
+
+    max-height:100%;
+
+    object-fit:contain;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 0 25px red;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ========================================= -->
+<!-- SONS DO JOGO -->
+<!-- ========================================= -->
+
+<!-- SOM DE GIRAR -->
+<audio id="spinSound"
+src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3">
+</audio>
+
+<!-- SOM DE VITÓRIA -->
+<audio id="winSound"
+src="https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3">
+</audio>
+
+<!-- SOM DE JACKPOT -->
+<audio id="jackpotSound"
+src="https://assets.mixkit.co/active_storage/sfx/270/270-preview.mp3">
+</audio>
+
+<!-- SOM DE DERROTA -->
+<audio id="loseSound"
+src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3">
+</audio>
+
+<!-- ========================================= -->
+<!-- TELA PRINCIPAL DO JOGO -->
+<!-- ========================================= -->
+
+<div class="container" id="gameScreen">
+
+    <!-- TÍTULO -->
+    <h1>🎰 MEGA WIN</h1>
+
+    <!-- TEXTO INICIAL -->
+    <div class="subtitle">
+
+        Você recebeu <b>100 moedas grátis</b><br>
+        Tente sua sorte agora!
+
+    </div>
+
+    <!-- ÁREA DAS MOEDAS -->
+    <div class="coins-box">
+
+        <!-- VALOR DAS MOEDAS -->
+        <div class="coins" id="coins">
+            100
+        </div>
+
+        <!-- TEXTO -->
+        <div class="label">
+            MOEDAS
+        </div>
+
+    </div>
+
+    <!-- SLOTS -->
+    <div class="slot">
+
+        <div class="reel" id="r1">❔</div>
+        <div class="reel" id="r2">❔</div>
+        <div class="reel" id="r3">❔</div>
+
+    </div>
+
+    <!-- BOTÃO -->
+    <button onclick="play()" id="playBtn">
+        JOGAR AGORA
+    </button>
+
+    <!-- MENSAGEM -->
+    <div class="message" id="message"></div>
+
+</div>
+
+<!-- ========================================= -->
+<!-- TELA FINAL -->
+<!-- ========================================= -->
+
+<div id="warningScreen">
+
+    <!-- IMAGEM FINAL -->
+    <!-- COLOCAR final.png NA MESMA PASTA -->
+
+    <img
+    src="final.png"
+    alt="Tela Final">
+
+</div>
+
+<script>
+
+/* ========================================= */
+/* VARIÁVEIS GLOBAIS */
+/* ========================================= */
+
+/* Quantidade de moedas */
+let coins = 100;
+
+/* Número da rodada */
+let rodada = 0;
+
+/* Emojis possíveis */
+const emojis = [
+"7️⃣",
+"💎",
+"💰",
+"🍀",
+"🎰"
+];
+
+/* ========================================= */
+/* FUNÇÃO PARA PEGAR EMOJI ALEATÓRIO */
+/* ========================================= */
+
+function emoji(){
+
+    return emojis[
+    Math.floor(Math.random()*emojis.length)
+    ];
+
+}
+
+/* ========================================= */
+/* ALTERA MENSAGEM NA TELA */
+/* ========================================= */
+
+function setMessage(text,classe){
+
+    document.getElementById("message").innerHTML =
+    `<span class="${classe}">${text}</span>`;
+
+}
+
+/* ========================================= */
+/* FUNÇÃO DOS SONS */
+/* ========================================= */
+
+function playSounds(type){
+
+    let audio;
+
+    /* Define qual áudio tocar */
+
+    if(type=="spin"){
+        audio = document.getElementById("spinSound");
+    }
+
+    if(type=="win"){
+        audio = document.getElementById("winSound");
+    }
+
+    if(type=="lose"){
+        audio = document.getElementById("loseSound");
+    }
+
+    if(type=="jackpot"){
+        audio = document.getElementById("jackpotSound");
+    }
+
+    /* Toca o áudio */
+
+    if(audio){
+
+        audio.pause();
+
+        audio.currentTime = 0;
+
+        audio.play().catch(e=>{
+
+            console.log("Som bloqueado");
+
+        });
+
+    }
+
+}
+
+/* ========================================= */
+/* ANIMAÇÃO DOS SLOTS */
+/* ========================================= */
+
+function spinAnimation(){
+
+    /* Toca som */
+    playSounds("spin");
+
+    /* Pega os slots */
+    const r1 = document.getElementById("r1");
+    const r2 = document.getElementById("r2");
+    const r3 = document.getElementById("r3");
+
+    /* Adiciona animação */
+    r1.classList.add("spin");
+    r2.classList.add("spin");
+    r3.classList.add("spin");
+
+    /* Troca emojis rapidamente */
+    let interval = setInterval(()=>{
+
+        r1.innerHTML = emoji();
+        r2.innerHTML = emoji();
+        r3.innerHTML = emoji();
+
+    },100);
+
+    /* Para animação */
+    setTimeout(()=>{
+
+        clearInterval(interval);
+
+        r1.classList.remove("spin");
+        r2.classList.remove("spin");
+        r3.classList.remove("spin");
+
+        /* Mostra resultado */
+        result();
+
+    },1500);
+
+}
+
+/* ========================================= */
+/* FUNÇÃO PRINCIPAL */
+/* ========================================= */
+
+function play(){
+
+    /* Desativa botão */
+    document.getElementById("playBtn").disabled = true;
+
+    /* Soma rodada */
+    rodada++;
+
+    /* Inicia animação */
+    spinAnimation();
+
+}
+
+/* ========================================= */
+/* RESULTADOS DAS RODADAS */
+/* ========================================= */
+
+function result(){
+
+    const r1 = document.getElementById("r1");
+    const r2 = document.getElementById("r2");
+    const r3 = document.getElementById("r3");
+
+    /* ===================================== */
+    /* PRIMEIRAS RODADAS = GANHAR */
+    /* ===================================== */
+
+    if(rodada <= 3){
+
+        /* Mostra jackpot */
+        r1.innerHTML = "7️⃣";
+        r2.innerHTML = "7️⃣";
+        r3.innerHTML = "7️⃣";
+
+        /* Premiação */
+        let premio = [50,120,300][rodada-1];
+
+        /* Soma moedas */
+        coins += premio;
+
+        /* Atualiza tela */
+        document.getElementById("coins").innerHTML = coins;
+
+        /* JACKPOT */
+        if(rodada == 3){
+
+            playSounds("jackpot");
+
+            setMessage(
+            `🎉 JACKPOT! +${premio} moedas`,
+            "green"
+            );
+
+            /* Vibração */
+            navigator.vibrate?.([200,100,200]);
+
+        }
+
+        /* Vitória normal */
+        else{
+
+            playSounds("win");
+
+            setMessage(
+            `✅ Você ganhou +${premio} moedas`,
+            "green"
+            );
+
+        }
+
+    }
+
+    /* ===================================== */
+    /* QUASE GANHOU */
+    /* ===================================== */
+
+    else if(rodada == 4){
+
+        r1.innerHTML = "7️⃣";
+        r2.innerHTML = "7️⃣";
+        r3.innerHTML = "💀";
+
+        coins -= 200;
+
+        document.getElementById("coins").innerHTML = coins;
+
+        playSounds("lose");
+
+        setMessage(
+        `😨 Quase... você perdeu 200 moedas`,
+        "yellow"
+        );
+
+    }
+
+    /* ===================================== */
+    /* DERROTA FINAL */
+    /* ===================================== */
+
+    else{
+
+        r1.innerHTML = "💀";
+        r2.innerHTML = "💀";
+        r3.innerHTML = "💀";
+
+        coins = 0;
+
+        document.getElementById("coins").innerHTML = coins;
+
+        playSounds("lose");
+
+        setMessage(
+        `❌ VOCÊ PERDEU TUDO`,
+        "red"
+        );
+
+        /* Vibração */
+        navigator.vibrate?.([300,100,300]);
+
+        /* Fundo vermelho */
+        document.body.classList.add("redFlash");
+
+        /* Mostra tela final */
+        setTimeout(()=>{
+
+            document.getElementById("gameScreen").style.display="none";
+
+            document.getElementById("warningScreen").style.display="flex";
+
+        },2500);
+
+    }
+
+    /* Reativa botão */
+    document.getElementById("playBtn").disabled = false;
+
+}
+
+</script>
+
+</body>
+</html>
