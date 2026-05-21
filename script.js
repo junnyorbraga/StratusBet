@@ -146,7 +146,9 @@ function play(){
     /* Soma rodada */
     rodada++;
 
-    if(rodada >= 2){
+    /* REMOVE TEXTO INICIAL */
+    /* A PARTIR DA SEGUNDA RODADA */
+    if(rodada > 1){
 
         document.querySelector(".subtitle")
         .style.display = "none";
