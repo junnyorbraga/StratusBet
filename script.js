@@ -146,6 +146,13 @@ function play(){
     /* Soma rodada */
     rodada++;
 
+    if(rodada >= 2){
+
+        document.querySelector(".subtitle")
+        .style.display = "none";
+
+    }
+
     /* Inicia animação */
     spinAnimation();
 
@@ -169,9 +176,9 @@ function result(){
     if(rodada <= 3){
 
         /* Mostra jackpot */
-        r1.innerHTML = "🧴";
-        r2.innerHTML = "🧴";
-        r3.innerHTML = "🧴";
+        r1.innerHTML = "🍀";
+        r2.innerHTML = "🍀";
+        r3.innerHTML = "🍀";
 
         /* Valores dos prêmios */
         let premio = [50,120,300][rodada-1];
@@ -247,7 +254,7 @@ function result(){
 
     else if(rodada == 4){
 
-        r1.innerHTML = "7️⃣";
+        r1.innerHTML = "🧴";
         r2.innerHTML = "7️⃣";
         r3.innerHTML = "💀";
 
@@ -262,7 +269,7 @@ function result(){
 
         /* Mensagem */
         setMessage(
-        `😨 Quase... você perdeu 200 moedas`,
+        `😨 QUASE... VOCÊ PERDEU 200 MOEDAS`,
         "yellow"
         );
 
@@ -274,9 +281,9 @@ function result(){
 
     else{
 
-        r1.innerHTML = "💀";
-        r2.innerHTML = "💀";
-        r3.innerHTML = "💀";
+        r1.innerHTML = "🍒";
+        r2.innerHTML = "💊";
+        r3.innerHTML = "💰";
 
         /* Zera moedas */
         coins = 0;
