@@ -148,7 +148,7 @@ function play(){
 
     /* REMOVE TEXTO INICIAL */
     /* A PARTIR DA SEGUNDA RODADA */
-    if(rodada > 1){
+    if(rodada = 1){
 
         document.querySelector(".subtitle")
         .style.display = "none";
@@ -183,8 +183,16 @@ function result(){
         r3.innerHTML = "🍀";
 
         /* Valores dos prêmios */
-        let premio = [50,120,300][rodada-1];
-
+        let premio;
+        /* Rodada 1 */
+        if(rodada == 1){
+          premio = Math.floor(Math.random() * 40) + 20;}
+        /* Rodada 2 */
+        else if(rodada == 2){
+            premio = Math.floor(Math.random() * 80) + 80;}
+        /* Jackpot */
+        else{premio = Math.floor(Math.random() * 300) + 300;}
+       
         /* Soma moedas */
         coins += premio;
 
@@ -198,7 +206,7 @@ function result(){
             playSounds("jackpot");
 
             setMessage(
-            `🎉 SUPER PRÊMIO!!! +${premio} moedas`,
+            `🎉 SUPER PRÊMIO!!! +${premio} MOEDAS`,
             "green"
             );
 
@@ -242,7 +250,7 @@ function result(){
             playSounds("win");
 
             setMessage(
-            `✅ Você ganhou +${premio} moedas`,
+            `✅ VOCÊ GANHOU +${premio} MOEDAS`,
             "green"
             );
 
