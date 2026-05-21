@@ -195,21 +195,34 @@ function result(){
 
             /* Vibração */
             navigator.vibrate?.([200,100,200]);
-                /* ================================= */
-                /* CONFETE */
-                /* ================================= */
 
-             confetti({
+            /* CONFETE */
+             let duration = 4000;
+             let animationEnd = Date.now() + duration;
+             let defaults = { startVelocity: 30, spread: 360, ticks: 80, zIndex: 9999 };
 
-             particleCount: 250,
+                function randomInRange(min, max) {
+                    return Math.random() * (max - min) + min;
+                }
 
-             spread: 180,
+                let interval = setInterval(function() {
+                let timeLeft = animationEnd - Date.now();
 
-             origin: { y: 0.6 }
-             
-                });
+                if (timeLeft <= 0) {
+                 return clearInterval(interval);
+                    }
 
-}
+                    let particleCount = 50 * (timeLeft / duration);
+                    // since particles fall down, start a bit higher than random
+                    confetti(Object.assign({}, defaults, { 
+                        particleCount, 
+                        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+                    }));
+                    confetti(Object.assign({}, defaults, { 
+                        particleCount, 
+                        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+                    }));
+                }, 250);
 
         }
 
@@ -235,7 +248,7 @@ function result(){
     else if(rodada == 4){
 
         r1.innerHTML = "7️⃣";
-        r2.innerHTML = "🍒";
+        r2.innerHTML = "7️⃣";
         r3.innerHTML = "💀";
 
         /* Remove moedas */
@@ -261,9 +274,9 @@ function result(){
 
     else{
 
-        r1.innerHTML = "🎰";
+        r1.innerHTML = "💀";
         r2.innerHTML = "💀";
-        r3.innerHTML = "💸";
+        r3.innerHTML = "💀";
 
         /* Zera moedas */
         coins = 0;
