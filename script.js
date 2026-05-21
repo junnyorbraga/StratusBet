@@ -1,3 +1,169 @@
+/* ===================================== */
+/* VARIÁVEIS GLOBAIS */
+/* ===================================== */
+
+/* Quantidade de moedas */
+let coins = 100;
+
+/* Número da rodada */
+let rodada = 0;
+
+/* Emojis possíveis */
+const emojis = [
+"🎱",
+"🦊",
+"🧴",
+"💊",
+"🍒",
+"💎",
+"💰",
+"🍀",
+"🎰"
+];
+
+/* ===================================== */
+/* RETORNA EMOJI ALEATÓRIO */
+/* ===================================== */
+
+function emoji(){
+
+    return emojis[
+    Math.floor(Math.random()*emojis.length)
+    ];
+
+}
+
+/* ===================================== */
+/* ALTERA MENSAGEM NA TELA */
+/* ===================================== */
+
+function setMessage(text,classe){
+
+    document.getElementById("message").innerHTML =
+    `<span class="${classe}">${text}</span>`;
+
+}
+
+/* ===================================== */
+/* SISTEMA DE SONS */
+/* ===================================== */
+
+function playSounds(type){
+
+    let audio;
+
+    /* Escolhe áudio */
+
+    if(type=="spin"){
+        audio = document.getElementById("spinSound");
+    }
+
+    if(type=="win"){
+        audio = document.getElementById("winSound");
+    }
+
+    if(type=="lose"){
+        audio = document.getElementById("loseSound");
+    }
+
+    if(type=="jackpot"){
+        audio = document.getElementById("jackpotSound");
+    }
+
+    /* Executa áudio */
+
+    if(audio){
+
+        /* Reinicia áudio */
+        audio.pause();
+
+        audio.currentTime = 0;
+
+        /* Toca áudio */
+        audio.play().catch(e=>{
+
+            console.log("Som bloqueado");
+
+        });
+
+    }
+
+}
+
+/* ===================================== */
+/* ANIMAÇÃO DOS SLOTS */
+/* ===================================== */
+
+function spinAnimation(){
+
+    /* Som */
+    playSounds("spin");
+
+    /* Captura elementos */
+    const r1 = document.getElementById("r1");
+    const r2 = document.getElementById("r2");
+    const r3 = document.getElementById("r3");
+
+    /* Adiciona animação */
+    r1.classList.add("spin");
+    r2.classList.add("spin");
+    r3.classList.add("spin");
+
+    /* Troca emojis rapidamente */
+    let interval = setInterval(()=>{
+
+        r1.innerHTML = emoji();
+        r2.innerHTML = emoji();
+        r3.innerHTML = emoji();
+
+    },100);
+
+    /* Para animação */
+    setTimeout(()=>{
+
+        clearInterval(interval);
+
+        r1.classList.remove("spin");
+        r2.classList.remove("spin");
+        r3.classList.remove("spin");
+
+        /* Chama resultado */
+        result();
+
+    },1500);
+
+}
+
+/* ===================================== */
+/* FUNÇÃO PRINCIPAL */
+/* ===================================== */
+
+function play(){
+
+    /* Desativa botão */
+    document.getElementById("playBtn").disabled = true;
+
+    /* Soma rodada */
+    rodada++;
+
+    /* REMOVE TEXTO INICIAL */
+    /* A PARTIR DA SEGUNDA RODADA */
+    if(rodada = 1){
+
+        document.querySelector(".subtitle")
+        .style.display = "none";
+
+    }
+
+    /* Inicia animação */
+    spinAnimation();
+
+}
+
+/* ===================================== */
+/* RESULTADOS */
+/* ===================================== */
+
 function result(){
 
     const r1 = document.getElementById("r1");
@@ -219,48 +385,7 @@ function result(){
     /* LIMITE DE RODADAS */
     /* ================================= */
 
-    /* ================================= */
-/* ÚLTIMA RODADA */
-/* ================================= */
-
-if(rodada >= 6){
-
-    /* Se ainda tiver saldo */
-
-    if(coins > 0){
-
-        /* Mostra derrota total */
-
-        r1.innerHTML = "💀";
-        r2.innerHTML = "💀";
-        r3.innerHTML = "💀";
-
-        playSounds("lose");
-
-        setMessage(
-        `💸 A CASA SEMPRE GANHA...`,
-        "red"
-        );
-
-        /* Zera saldo */
-
-        coins = 0;
-
-        document.getElementById("coins")
-        .innerHTML = coins;
-
-        /* Vibração */
-
-        navigator.vibrate?.([300,100,300]);
-
-        /* Fundo vermelho */
-
-        document.body.classList
-        .add("redFlash");
-
-    }
-
-    /* Vai para tela final */
+    if(rodada >= 6){
 
     setTimeout(()=>{
 
@@ -270,7 +395,7 @@ if(rodada >= 6){
         document.getElementById("warningScreen")
         .style.display="flex";
 
-    },3000);
+    },2500);
 
 }
 
