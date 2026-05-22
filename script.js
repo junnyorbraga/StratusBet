@@ -81,22 +81,45 @@ function playSounds(type){
     if(type=="jackpot"){
         audio = document.getElementById("jackpotSound");
     }
+    if(type=="gameover"){
+    audio = document.getElementById("gameOverSound");   
+    }
 
     /* Executa áudio */
 
     if(audio){
 
-        /* Reinicia áudio */
+    /* NÃO reinicia música ambiente */
+
+    if(type != "bg"){
+
         audio.pause();
 
         audio.currentTime = 0;
 
-        /* Toca áudio */
-        audio.play().catch(e=>{
+    }
 
-            console.log("Som bloqueado");
+    /* Volume específico */
 
-        });
+    if(type == "spin"){
+
+        audio.volume = 0.6;
+
+    }
+
+    else{
+
+        audio.volume = 1;
+
+    }
+
+    /* Toca áudio */
+
+    audio.play().catch(e=>{
+
+        console.log("Som bloqueado");
+
+    });
 
     }
 
@@ -108,8 +131,19 @@ function playSounds(type){
 
 function spinAnimation(){
 
-    /* Som */
-    playSounds("spin");
+    /* SOM GIRO */
+    const spinAudio =
+    document.getElementById("spinSound");
+
+    /* Reinicia */
+    spinAudio.pause();
+    spinAudio.currentTime = 0;
+
+    /* Volume */
+    spinAudio.volume = 0.7;
+
+    /* Toca */
+    spinAudio.play().catch(()=>{});
 
     /* Captura elementos */
     const r1 = document.getElementById("r1");
@@ -130,14 +164,18 @@ function spinAnimation(){
 
     },100);
 
-    /* Para animação */
-    setTimeout(()=>{
+        /* Para animação */
+        setTimeout(()=>{
 
         clearInterval(interval);
 
         r1.classList.remove("spin");
         r2.classList.remove("spin");
         r3.classList.remove("spin");
+
+        /* PARA SOM GIRO */
+        spinAudio.pause();
+        spinAudio.currentTime = 0;
 
         /* Chama resultado */
         result();
@@ -180,7 +218,7 @@ function play(){
 /* RESULTADOS */
 /* ===================================== */
 
-function result(){
+async function result(){
 
     const r1 = document.getElementById("r1");
     const r2 = document.getElementById("r2");
@@ -219,7 +257,7 @@ function result(){
 
        /* Anima */
 
-       animateCoins(oldCoins, coins);;
+       await animateCoins(oldCoins, coins);;
 
        /* Atualiza tela */
 
@@ -361,6 +399,20 @@ function result(){
         .innerHTML = coins;
 
         playSounds("lose");
+        /* FLASH VERMELHO */
+
+        const container =
+        document.querySelector(".container");
+
+        container.classList.add("flashLose");
+
+        /* Remove efeito */
+
+        setTimeout(()=>{
+
+        container.classList.remove("flashLose");
+
+        },500);
 
         setMessage(
         `😨 VOCÊ PERDEU ${perda} MOEDAS`,
@@ -410,15 +462,22 @@ if(coins < 0){
 
         document.getElementById("gameScreen")
         .innerHTML = `
-       <div class="game-over">
-       <h1 class="game-over-title">
-       💸 VOCÊ PERDEU MAIS DO QUE TINHA!
-       </h1>
-       
-       <p class="game-over-text">            
-       📱 LEIA NOVAMENTE O QR CODE PARA TENTAR OUTRA VEZ.
-       </p>
-       </div>
+        <div class="debt-screen">
+
+        <img
+        src="divida.png"
+        class="debt-image">
+
+        <button
+        class="retry-btn"
+        onclick="location.reload()">
+
+            JOGAR NOVAMENTE
+
+        </button>
+
+    </div>
+
     `;
 
     },3000);
@@ -435,13 +494,13 @@ if(rodada >= 6){
 
     /* Se ainda estiver positivo */
 
-    if(coins > 0){
+    //if(coins > 0){
 
         r1.innerHTML = "💰";
         r2.innerHTML = "🎱";
         r3.innerHTML = "💀";
 
-        playSounds("lose");
+        playSounds("gameover");
 
         setMessage(
         `💸 A CASA SEMPRE GANHA...`,
@@ -472,7 +531,7 @@ if(rodada >= 6){
 
         },3000);
 
-    }
+    //}
 
     return;
 
