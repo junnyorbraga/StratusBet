@@ -384,36 +384,26 @@ if(coins < 0){
 
         <div style='padding:30px;'>
 
-            <h1 style='color:red;'>
+         <h1 style='color:red;'>
 
-                💸 DÍVIDA COM A CASA
+            💸 DÍVIDA COM A CASA
 
-            </h1>
+         </h1>
 
-            <br>
+        <br>
 
-            <p style='font-size:22px;
-            line-height:1.6;'>
+        <p style='font-size:22px;
+        line-height:1.6;'>
 
-                Você perdeu mais do que tinha.<br><br>
+        VOCÊ PERDEU MAIS DO QUE TINHA.<br><br>
 
-                Jogos de aposta podem gerar:<br><br>
+         📱 LEIA NOVAMENTE O QR CODE PARA TENTAR OUTRA VEZ.
 
-                💳 Dívidas<br>
-                😟 Ansiedade<br>
-                🧠 Dependência<br>
-                👨‍👩‍👧 Problemas familiares
+         </p>
 
-                <br><br>
+         </div>
 
-                📱 Leia novamente o QR Code
-                para tentar outra vez.
-
-            </p>
-
-        </div>
-
-        `;
+    `;
 
     },3000);
 
