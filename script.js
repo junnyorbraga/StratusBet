@@ -381,16 +381,15 @@ if(coins < 0){
 
         document.getElementById("gameScreen")
         .innerHTML = `
-        <div style='padding:30px;'>
-         <h1 style='color:red;'>
-            💸 VOCÊ PERDEU MAIS DO QUE TINHA!
-         </h1>
-        <br>
-        <p style='font-size:22px;
-        line-height:1.6;'>        
-         📱 LEIA NOVAMENTE O QR CODE PARA TENTAR OUTRA VEZ.
-         </p>
-         </div>
+       <div class="game-over">
+       <h1 class="game-over-title">
+       💸 VOCÊ PERDEU MAIS DO QUE TINHA!
+       </h1>
+       
+       <p class="game-over-text">            
+       📱 LEIA NOVAMENTE O QR CODE PARA TENTAR OUTRA VEZ.
+       </p>
+       </div>
     `;
 
     },3000);
