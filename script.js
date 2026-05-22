@@ -359,11 +359,11 @@ if(coins < 0){
 
     playSounds("lose");
 
-    setMessage(
-    `💸 VOCÊ ESTÁ DEVENDO À CASA!<br><br>
-    📱 Leia o QR Code e tente novamente.`,
-    "red"
-    );
+   // setMessage(
+   // `💸 VOCÊ ESTÁ DEVENDO À CASA!<br><br>
+   // 📱 Leia o QR Code e tente novamente.`,
+   // "red"
+   // );
 
     navigator.vibrate?.([300,100,300]);
 
@@ -381,28 +381,16 @@ if(coins < 0){
 
         document.getElementById("gameScreen")
         .innerHTML = `
-
         <div style='padding:30px;'>
-
          <h1 style='color:red;'>
-
-            💸 DÍVIDA COM A CASA
-
+            💸 VOCÊ PERDEU MAIS DO QUE TINHA!
          </h1>
-
         <br>
-
         <p style='font-size:22px;
-        line-height:1.6;'>
-
-        VOCÊ PERDEU MAIS DO QUE TINHA.<br><br>
-
+        line-height:1.6;'>        
          📱 LEIA NOVAMENTE O QR CODE PARA TENTAR OUTRA VEZ.
-
          </p>
-
          </div>
-
     `;
 
     },3000);
