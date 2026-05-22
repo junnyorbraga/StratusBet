@@ -2,6 +2,14 @@
 /* VARIÁVEIS GLOBAIS */
 /* ===================================== */
 
+/* Música ambiente */
+
+const bgMusic =
+document.getElementById("bgMusic");
+
+/* Volume baixo */
+bgMusic.volume = 0.15;
+
 /* Quantidade de moedas */
 let coins = 100;
 
@@ -53,6 +61,10 @@ function playSounds(type){
     let audio;
 
     /* Escolhe áudio */
+
+    if(type=="count"){
+        audio = document.getElementById("countSound");
+    }
 
     if(type=="spin"){
         audio = document.getElementById("spinSound");
@@ -155,6 +167,10 @@ function play(){
 
     }
 
+     /* Inicia música */
+     if(bgMusic.paused){
+     bgMusic.play();}
+
     /* Inicia animação */
     spinAnimation();
 
@@ -195,6 +211,7 @@ function result(){
         /* Soma moedas */
 
         coins += premio;
+        updateCoinsColor();
 
         /* Atualiza tela */
 
@@ -213,6 +230,9 @@ function result(){
             );
 
             navigator.vibrate?.([200,100,200]);
+
+            document.getElementById("coins")
+            .innerHTML = coins;
 
             /* CONFETE */
 
@@ -325,6 +345,7 @@ function result(){
         /* Remove moedas */
 
         coins -= perda;
+        updateCoinsColor();
 
         /* Atualiza tela */
 
@@ -455,5 +476,70 @@ if(rodada >= 6){
 
     document.getElementById("playBtn")
     .disabled = false;
+
+}
+
+/* ===================================== */
+/* CONTAGEM ANIMADA DE MOEDAS */
+/* ===================================== */
+
+function animateCoins(finalValue){
+
+    let current =
+    parseInt(
+    document.getElementById("coins")
+    .innerHTML
+    );
+
+    let counter =
+    setInterval(()=>{
+
+        /* SOM */
+
+        playSounds("count");
+
+        /* Soma 1 */
+
+        current++;
+
+        /* Atualiza tela */
+
+        document.getElementById("coins")
+        .innerHTML = current;
+
+        /* Finaliza */
+
+        if(current >= finalValue){
+
+            clearInterval(counter);
+
+        }
+
+    },20);
+
+}
+
+/* ===================================== */
+/* COR DAS MOEDAS */
+/* ===================================== */
+
+function updateCoinsColor(){
+
+    const coinsElement =
+    document.getElementById("coins");
+
+    if(coins < 0){
+
+        coinsElement.classList
+        .add("negative");
+
+    }
+
+    else{
+
+        coinsElement.classList
+        .remove("negative");
+
+    }
 
 }
