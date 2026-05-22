@@ -351,23 +351,110 @@ function result(){
 
     }
 
-    /* ================================= */
-    /* VERIFICA DÍVIDA */
-    /* ================================= */
+/* ================================= */
+/* VERIFICA DÍVIDA */
+/* ================================= */
 
-    if(coins < 0){
+if(coins < 0){
+
+    playSounds("lose");
+
+    setMessage(
+    `💸 VOCÊ ESTÁ DEVENDO À CASA!<br><br>
+    📱 Leia o QR Code e tente novamente.`,
+    "red"
+    );
+
+    navigator.vibrate?.([300,100,300]);
+
+    document.body.classList
+    .add("redFlash");
+
+    /* DESATIVA BOTÃO */
+
+    document.getElementById("playBtn")
+    .disabled = true;
+
+    /* ENCERRA JOGO */
+
+    setTimeout(()=>{
+
+        document.getElementById("gameScreen")
+        .innerHTML = `
+
+        <div style='padding:30px;'>
+
+            <h1 style='color:red;'>
+
+                💸 DÍVIDA COM A CASA
+
+            </h1>
+
+            <br>
+
+            <p style='font-size:22px;
+            line-height:1.6;'>
+
+                Você perdeu mais do que tinha.<br><br>
+
+                Jogos de aposta podem gerar:<br><br>
+
+                💳 Dívidas<br>
+                😟 Ansiedade<br>
+                🧠 Dependência<br>
+                👨‍👩‍👧 Problemas familiares
+
+                <br><br>
+
+                📱 Leia novamente o QR Code
+                para tentar outra vez.
+
+            </p>
+
+        </div>
+
+        `;
+
+    },3000);
+
+    return;
+
+}
+
+/* ================================= */
+/* SEXTA RODADA */
+/* ================================= */
+
+if(rodada >= 6){
+
+    /* Se ainda estiver positivo */
+
+    if(coins > 0){
+
+        r1.innerHTML = "💀";
+        r2.innerHTML = "💀";
+        r3.innerHTML = "💀";
 
         playSounds("lose");
 
         setMessage(
-        `💸 VOCÊ ESTÁ DEVENDO A CASA!`,
+        `💸 A CASA SEMPRE GANHA...`,
         "red"
         );
+
+        /* Zera saldo */
+
+        coins = 0;
+
+        document.getElementById("coins")
+        .innerHTML = coins;
 
         navigator.vibrate?.([300,100,300]);
 
         document.body.classList
         .add("redFlash");
+
+        /* MOSTRA IMAGEM FINAL */
 
         setTimeout(()=>{
 
@@ -381,21 +468,7 @@ function result(){
 
     }
 
-    /* ================================= */
-    /* LIMITE DE RODADAS */
-    /* ================================= */
-
-    if(rodada >= 6){
-
-    setTimeout(()=>{
-
-        document.getElementById("gameScreen")
-        .style.display="none";
-
-        document.getElementById("warningScreen")
-        .style.display="flex";
-
-    },2500);
+    return;
 
 }
 
