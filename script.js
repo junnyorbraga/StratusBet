@@ -205,18 +205,25 @@ function result(){
 
         /* Valor aleatório */
 
-        let premio =
+       let premio =
         Math.floor(Math.random() * 250) + 50;
 
-        /* Soma moedas */
+       /* Guarda valor antigo */
+
+       let oldCoins = coins;
+
+       /* Soma prêmio */
 
         coins += premio;
-        updateCoinsColor();
 
-        /* Atualiza tela */
+       /* Anima */
 
-        document.getElementById("coins")
-        .innerHTML = coins;
+       animateCoins(oldCoins, coins);;
+
+       /* Atualiza tela */
+
+        //document.getElementById("coins")
+        //.innerHTML = coins;
 
         /* Jackpot aleatório */
 
@@ -231,8 +238,8 @@ function result(){
 
             navigator.vibrate?.([200,100,200]);
 
-            document.getElementById("coins")
-            .innerHTML = coins;
+            //document.getElementById("coins")
+            //.innerHTML = coins;
 
             /* CONFETE */
 
@@ -480,32 +487,35 @@ if(rodada >= 6){
 }
 
 /* ===================================== */
-/* CONTAGEM ANIMADA DE MOEDAS */
+/* CONTAGEM ANIMADA */
 /* ===================================== */
 
-function animateCoins(finalValue){
+function animateCoins(startValue, finalValue){
 
-    let current =
-    parseInt(
-    document.getElementById("coins")
-    .innerHTML
-    );
+    let current = startValue;
+
+    const coinsElement =
+    document.getElementById("coins");
 
     let counter =
     setInterval(()=>{
 
         /* SOM */
 
-        playSounds("count");
+        const countSound =
+        document.getElementById("countSound");
 
-        /* Soma 1 */
+        countSound.currentTime = 0;
+
+        countSound.play().catch(()=>{});
+
+        /* Soma */
 
         current++;
 
-        /* Atualiza tela */
+        /* Atualiza */
 
-        document.getElementById("coins")
-        .innerHTML = current;
+        coinsElement.innerHTML = current;
 
         /* Finaliza */
 
@@ -515,7 +525,7 @@ function animateCoins(finalValue){
 
         }
 
-    },20);
+    },8);
 
 }
 
