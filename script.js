@@ -215,6 +215,7 @@ function result(){
        /* Soma prêmio */
 
         coins += premio;
+        updateCoinsColor();
 
        /* Anima */
 
@@ -497,17 +498,39 @@ function animateCoins(startValue, finalValue){
     const coinsElement =
     document.getElementById("coins");
 
+    /* SOM */
+
+    const countSound =
+    document.getElementById("countSound");
+
+    /* Reinicia som */
+
+    countSound.pause();
+
+    countSound.currentTime = 0;
+
+    /* Volume baixo */
+
+    countSound.volume = 0.3;
+
+    /* Toca uma vez */
+
+    countSound.play().catch(()=>{});
+
+    /* VELOCIDADE */
+
+    let speed = 15;
+
+    /* Se jackpot */
+
+    if(finalValue - startValue > 200){
+
+        speed = 5;
+
+    }
+
     let counter =
     setInterval(()=>{
-
-        /* SOM */
-
-        const countSound =
-        document.getElementById("countSound");
-
-        countSound.currentTime = 0;
-
-        countSound.play().catch(()=>{});
 
         /* Soma */
 
@@ -523,9 +546,15 @@ function animateCoins(startValue, finalValue){
 
             clearInterval(counter);
 
+            /* Para som */
+
+            countSound.pause();
+
+            countSound.currentTime = 0;
+
         }
 
-    },8);
+    },speed);
 
 }
 
