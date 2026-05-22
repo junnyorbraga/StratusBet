@@ -199,9 +199,9 @@ function result(){
 
     if(ganhou){
 
-        r1.innerHTML = "🍕";
-        r2.innerHTML = "🍕";
-        r3.innerHTML = "🍕";
+        r1.innerHTML = "🍀";
+        r2.innerHTML = "🍀";
+        r3.innerHTML = "🍀";
 
         /* Valor aleatório */
 
@@ -327,7 +327,7 @@ function result(){
             playSounds("win");
 
             setMessage(
-            `✅ Você ganhou +${premio} moedas`,
+            `✅ VOCÊ GANHOU +${premio} MOEDAS`,
             "green"
             );
 
@@ -341,9 +341,9 @@ function result(){
 
     else{
 
-        r1.innerHTML = "🍕";
-        r2.innerHTML = "🍕";
-        r3.innerHTML = "💀";
+        r1.innerHTML = "🍒";
+        r2.innerHTML = "🍒";
+        r3.innerHTML = "🧴";
 
         /* Valor aleatório */
 
@@ -363,8 +363,8 @@ function result(){
         playSounds("lose");
 
         setMessage(
-        `😨 Você perdeu ${perda} moedas`,
-        "yellow"
+        `😨 VOCÊ PERDEU ${perda} MOEDAS`,
+        "red"
         );
 
     }
@@ -437,8 +437,8 @@ if(rodada >= 6){
 
     if(coins > 0){
 
-        r1.innerHTML = "💀";
-        r2.innerHTML = "💀";
+        r1.innerHTML = "💰";
+        r2.innerHTML = "🎱";
         r3.innerHTML = "💀";
 
         playSounds("lose");
