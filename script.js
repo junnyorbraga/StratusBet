@@ -203,12 +203,12 @@ function result(){
 
         /* Jackpot aleatório */
 
-        if(premio >= 220){
+        if(premio >= 250){
 
             playSounds("jackpot");
 
             setMessage(
-            `🎉 JACKPOT! +${premio} moedas`,
+            `🎉 SUPER GANHO!!! +${premio} moedas`,
             "green"
             );
 
