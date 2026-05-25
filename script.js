@@ -8,7 +8,7 @@ const bgMusic =
 document.getElementById("bgMusic");
 
 /* Volume baixo */
-bgMusic.volume = 0.15;
+bgMusic.volume = 0.30;
 
 /* Quantidade de moedas */
 let coins = 100;
@@ -16,29 +16,21 @@ let coins = 100;
 /* Número da rodada */
 let rodada = 0;
 
-/* Emojis possíveis */
+/* Emojis normais */
 const emojis = [
-"🎱",
-"🦊",
-"🧴",
-"💊",
-"🍒",
-"💎",
-"💰",
-"🍀",
-"🎰"
-];
+    "🎱","🦊","🧴","💊","🍒","💎","💰","🍀","🎰"];
+/* Emojis de jackpot */
+const jackpotEmojis = [
+    "👑","💸","🔥","⭐","🐯","💵"];
 
 /* ===================================== */
 /* RETORNA EMOJI ALEATÓRIO */
 /* ===================================== */
-
 function emoji(){
-
-    return emojis[
-    Math.floor(Math.random()*emojis.length)
-    ];
-
+    return emojis[Math.floor(Math.random()*emojis.length)];
+}
+function jackpotEmoji(){
+    return jackpotEmojis[Math.floor(Math.random() * jackpotEmojis.length)];
 }
 
 /* ===================================== */
@@ -61,28 +53,29 @@ function playSounds(type){
     let audio;
 
     /* Escolhe áudio */
-
     if(type=="count"){
         audio = document.getElementById("countSound");
+        audio.volume = 0.5;
     }
-
     if(type=="spin"){
         audio = document.getElementById("spinSound");
+        audio.volume = 0.5;
     }
-
     if(type=="win"){
         audio = document.getElementById("winSound");
+        audio.volume = 0.8;
     }
-
     if(type=="lose"){
         audio = document.getElementById("loseSound");
+        audio.volume = 0.7;
     }
-
     if(type=="jackpot"){
         audio = document.getElementById("jackpotSound");
+        audio.volume = 1;
     }
     if(type=="gameover"){
-    audio = document.getElementById("gameOverSound");   
+        audio = document.getElementById("gameOverSound");   
+        audio.volume = 1;
     }
 
     /* Executa áudio */
@@ -96,20 +89,6 @@ function playSounds(type){
         audio.pause();
 
         audio.currentTime = 0;
-
-    }
-
-    /* Volume específico */
-
-    if(type == "spin"){
-
-        audio.volume = 0.6;
-
-    }
-
-    else{
-
-        audio.volume = 1;
 
     }
 
@@ -215,7 +194,7 @@ function play(){
 }
 
 /* ===================================== */
-/* RESULTADOS */
+/* RESULTADO FINAL PROFISSIONAL */
 /* ===================================== */
 
 async function result(){
@@ -224,329 +203,320 @@ async function result(){
     const r2 = document.getElementById("r2");
     const r3 = document.getElementById("r3");
 
-        /* ================================= */
-        /* SISTEMA DE CHANCE CONTROLADA */
-        /* ================================= */
-
-        let chance =
-        Math.random();
-
-        /* Emojis finais */
-        let e1;
-        let e2;
-        let e3;
-
-        /* ================================= */
-        /* SUPER GANHO - 20% */
-        /* ================================= */
-        if(chance < 0.20){
-            e1 = "🍀";
-            e2 = "🍀";
-            e3 = "🍀";
-        }
-
-        /* ================================= */
-        /* QUASE GANHOU - 35% */
-        /* ================================= */
-        else if(chance < 0.55){
-            e1 = "🍀";
-            e2 = "🍀";
-            e3 = emoji();
-
-            /* Evita vitória */
-            while(e3 == "🍀"){
-                e3 = emoji();
-            }
-        }
-        /* ================================= */
-        /* DERROTA NORMAL */
-        /* ================================= */
-        else{
-            e1 = emoji();
-            e2 = emoji();
-            e3 = emoji();
-        }
-
-        /* Mostra nos slots */
-        r1.innerHTML = e1;
-        r2.innerHTML = e2;
-        r3.innerHTML = e3;
-
-        /* Vitória */
-        let ganhou =
-        e1 == "🍀" &&
-        e2 == "🍀" &&
-        e3 == "🍀"
-
-        /* ================================= */
-        /* DEFINE SE GANHA OU PERDE */
-        /* ================================= */
-        //let ganhou =
-        //Math.random() < 0.5;
-
-        /* ================================= */
-        /* GANHOU */
-        /* ================================= */
-
-    if(ganhou){
-
-        // r1.innerHTML = "🍀";
-        // r2.innerHTML = "🍀";
-        // r3.innerHTML = "🍀";
-
-        /* Valor aleatório */
-
-       let premio =
-        Math.floor(Math.random() * 250) + 50;
-
-       /* Guarda valor antigo */
-       let oldCoins = coins;
-
-       /* Soma prêmio */
-        coins += premio;
-        updateCoinsColor();
-
-       /* Anima */
-       await animateCoins(oldCoins, coins);;
-
-       /* Atualiza tela */
-        //document.getElementById("coins")
-        //.innerHTML = coins;
-
-        /* Jackpot aleatório */
-        if(premio >= 200){
-
-            playSounds("jackpot");
-
-            setMessage(
-            `🎉 SUPER GANHO!!! +${premio} moedas`,
-            "green"
-            );
-
-            navigator.vibrate?.([200,100,200]);
-
-            //document.getElementById("coins")
-            //.innerHTML = coins;
-
-            /* CONFETE */
-            let duration = 4000;
-
-            let animationEnd =
-            Date.now() + duration;
-
-            let defaults = {
-                startVelocity: 30,
-                spread: 360,
-                ticks: 80,
-                zIndex: 9999
-            };
-
-            function randomInRange(min, max){
-                return Math.random()
-                * (max - min) + min;
-            }
-
-            let interval = setInterval(function(){
-
-                let timeLeft =
-                animationEnd - Date.now();
-
-                if(timeLeft <= 0){
-
-                    return clearInterval(interval);
-
-                }
-
-                let particleCount =
-                50 * (timeLeft / duration);
-
-                confetti(Object.assign(
-                {},
-                defaults,
-                {
-
-                    particleCount,
-
-                    origin: {
-                        x: randomInRange(0.1, 0.3),
-                        y: Math.random() - 0.2
-
-                    }
-
-                }));
-
-                confetti(Object.assign(
-                {},
-                defaults,
-                {
-                    particleCount,
-                    origin: {
-                        x: randomInRange(0.7, 0.9),
-                        y: Math.random() - 0.2
-                    }
-                }));
-            },250);
-
-        }
-
-        /* Vitória comum */
-        else{
-            playSounds("win");
-            setMessage(`✅ VOCÊ GANHOU +${premio} MOEDAS`,
-            "green"
-            );
-        }
-
-    }
-
     /* ================================= */
-    /* PERDEU */
+    /* RODADA FINAL */
     /* ================================= */
 
-    else{
+    if(rodada >= 6){
 
-        //r1.innerHTML = "🍒";
-        //r2.innerHTML = "🍒";
-        //r3.innerHTML = "🧴";
-
-        /* Valor aleatório */
-
-        let perda = Math.floor(Math.random() * 300) + 50;
-
-        /* Remove moedas */
-        coins -= perda;
-        updateCoinsColor();
-
-        /* Atualiza tela */
-        document.getElementById("coins").innerHTML = coins;
-
-        playSounds("lose");
-
-        /* FLASH VERMELHO */
-        const container = document.querySelector(".container");
-        container.classList.add("flashLose");
-
-        /* Remove efeito */
-        setTimeout(()=>{
-        container.classList.remove("flashLose");
-        },800); //ESTAVA 500
-
-        setMessage(
-        `😨 VOCÊ PERDEU ${perda} MOEDAS`,
-        "red"
-        );
-
-    }
-
-    /* ================================= */
-    /* REMOVE TEXTO INICIAL */
-    /* ================================= */
-
-    if(rodada >= 2){
-
-        document.querySelector(".subtitle")
-        .style.display = "none";
-
-    }
-
-/* ================================= */
-/* VERIFICA DÍVIDA */
-/* ================================= */
-
-if(coins < 0){
-
-    playSounds("lose");
-
-   // setMessage(
-   // `💸 VOCÊ ESTÁ DEVENDO À CASA!<br><br>
-   // 📱 Leia o QR Code e tente novamente.`,
-   // "red"
-   // );
-
-    navigator.vibrate?.([300,100,300]);
-
-    document.body.classList
-    .add("redFlash");
-
-    /* DESATIVA BOTÃO */
-    document.getElementById("playBtn").disabled = true;
-
-    /* ENCERRA JOGO */
-    setTimeout(()=>{
-
-        document.getElementById("gameScreen")
-        .innerHTML = `
-        <div class="debt-screen">
-
-        <img
-        src="divida.png"
-        class="debt-image">
-
-        <button
-        class="retry-btn"
-        onclick="location.reload()">
-
-            JOGAR NOVAMENTE
-
-        </button>
-    </div>
-    `;
-    },3000);
-
-    return;
-
-}
-
-/* ================================= */
-/* SEXTA RODADA */
-/* ================================= */
-
-if(rodada >= 6){
-
-    /* Se ainda estiver positivo */
-
-    //if(coins > 0){
-
-        r1.innerHTML = "💰";
-        r2.innerHTML = "🎱";
+        r1.innerHTML = "💀";
+        r2.innerHTML = "💀";
         r3.innerHTML = "💀";
 
+        /* PARA ÁUDIOS */
+
+        document.querySelectorAll("audio")
+        .forEach(audio=>{
+
+            audio.pause();
+            audio.currentTime = 0;
+
+        });
+
+        /* GAME OVER */
         playSounds("gameover");
 
-        setMessage(
-        `💸 A CASA SEMPRE GANHA...`,
+        setMessage("💸 A CASA SEMPRE GANHA...",
         "red"
         );
 
-        /* Zera saldo */
-
+        /* ZERA MOEDAS */
+        let oldCoins = coins;
         coins = 0;
 
-        document.getElementById("coins")
-        .innerHTML = coins;
+        await animateCoins(oldCoins, coins);
+        updateCoinsColor();
 
         navigator.vibrate?.([300,100,300]);
 
         document.body.classList
         .add("redFlash");
 
+        document.getElementById("playBtn")
+        .disabled = true;
+
         /* MOSTRA IMAGEM FINAL */
+        setTimeout(()=>{
+
+            document.getElementById("gameScreen")
+            .style.display = "none";
+            document.getElementById("warningScreen")
+            .style.display = "flex";
+
+        },6000);
+
+        return;
+
+    }
+
+    /* ================================= */
+    /* DEFINE RESULTADO */
+    /* ================================= */
+
+    let chance = Math.random();
+
+    let resultado;
+
+    if(chance < 0.10){
+        resultado = "jackpot";
+    }
+
+    else if(chance < 0.35){
+        resultado = "win";
+    }
+
+    else if(chance < 0.65){
+        resultado = "almost";
+    }
+
+    else{
+        resultado = "lose";
+    }
+
+    /* Emojis */
+    let e1;
+    let e2;
+    let e3;
+
+    /* ================================= */
+    /* JACKPOT */
+    /* ================================= */
+
+    if(resultado == "jackpot"){
+        let special = jackpotEmoji();
+
+        e1 = special;
+        e2 = special;
+        e3 = special;
+
+    }
+
+    /* ================================= */
+    /* GANHO NORMAL */
+    /* ================================= */
+
+    else if(resultado == "win"){
+
+        e1 = "🍀";
+        e2 = "🍀";
+        e3 = "🍀";
+
+    }
+
+    /* ================================= */
+    /* QUASE GANHOU */
+    /* ================================= */
+
+    else if(resultado == "almost"){
+
+        e1 = "🍀";
+        e2 = "🍀";
+        e3 = emoji();
+
+        while(
+        e3 == "🍀" ||
+        jackpotEmojis.includes(e3)
+        ){
+
+            e3 = emoji();
+
+        }
+
+    }
+
+    /* ================================= */
+    /* DERROTA */
+    /* ================================= */
+
+    else{
+
+        e1 = emoji();
+        e2 = emoji();
+        e3 = emoji();
+
+    }
+
+    /* MOSTRA SLOTS */
+
+    r1.innerHTML = e1;
+    r2.innerHTML = e2;
+    r3.innerHTML = e3;
+
+    /* ================================= */
+    /* JACKPOT */
+    /* ================================= */
+
+    if(resultado == "jackpot"){
+
+        let premio =
+        Math.floor(Math.random() * 500) + 300;
+
+        let oldCoins = coins;
+
+        coins += premio;
+        playSounds("jackpot");
+        setMessage(
+        `🎉 SUPER GANHO!!! +${premio}`,
+        "green"
+        );
+
+        await animateCoins(oldCoins, coins);
+
+        updateCoinsColor();     
+
+        navigator.vibrate?.([200,100,200]);
+
+        /* CONFETE */
+
+        confetti({
+            particleCount:200,
+            spread:180
+        });
+
+    }
+
+    /* ================================= */
+    /* GANHO NORMAL */
+    /* ================================= */
+
+    else if(resultado == "win"){
+
+        let premio =
+        Math.floor(Math.random() * 150) + 50;
+
+        let oldCoins = coins;
+
+        coins += premio;
+        playSounds("win");
+        setMessage(
+        `✅ VOCÊ GANHOU +${premio} MOEDAS`,
+        "green"
+        );
+
+        await animateCoins(oldCoins, coins);
+
+        updateCoinsColor();      
+
+    }
+
+    /* ================================= */
+    /* QUASE GANHOU */
+    /* ================================= */
+
+    else if(resultado == "almost"){
+
+        let perda =
+        Math.floor(Math.random() * 100) + 30;
+
+        let oldCoins = coins;
+
+        coins -= perda;
+        playSounds("lose");
+        setMessage(
+        `😨 QUASE! VOCÊ PERDEU ${perda}`,
+        "yellow"
+        );
+
+        await animateCoins(oldCoins, coins);
+
+        updateCoinsColor();              
+
+    }
+
+    /* ================================= */
+    /* DERROTA */
+    /* ================================= */
+
+    else{
+
+        let perda =
+        Math.floor(Math.random() * 300) + 50;
+
+        let oldCoins = coins;
+
+        coins -= perda;
+
+        updateCoinsColor(); 
+        playSounds("lose");
+         setMessage(
+        `😨 VOCÊ PERDEU ${perda} MOEDAS`,
+        "red"
+        );           
+
+        /* FLASH */
+            const container =
+            document.querySelector(".container");
+
+            /* Reinicia animação */
+            container.classList.remove("flashLose");
+            void container.offsetWidth;
+
+            /* Adiciona novamente */
+            container.classList.add("flashLose");
+
+            /* Remove classe */
+            setTimeout(()=>{
+                container.classList.remove("flashLose");
+            },2000);
+
+            await animateCoins(oldCoins, coins);
+
+    }
+
+    /* ================================= */
+    /* DÍVIDA */
+    /* ================================= */
+
+    if(coins < 0){
+
+        playSounds("gameover");
+
+        navigator.vibrate?.([300,100,300]);
+
+        document.body.classList
+        .add("redFlash");
+
+        document.getElementById("playBtn")
+        .disabled = true;
 
         setTimeout(()=>{
 
             document.getElementById("gameScreen")
-            .style.display="none";
+            .innerHTML = `
 
-            document.getElementById("warningScreen")
-            .style.display="flex";
+            <div class="debt-screen">
+
+                <img
+                src="divida.png"
+                class="debt-image">
+
+                <button
+                class="retry-btn"
+                onclick="location.reload()">
+
+                    JOGAR NOVAMENTE
+
+                </button>
+
+            </div>
+
+            `;
 
         },3000);
 
-    //}
+        return;
 
-    return;
-
-}
+    }
 
     /* ================================= */
     /* LIBERA BOTÃO */
@@ -557,98 +527,114 @@ if(rodada >= 6){
 
 }
 
-/* ===================================== */
-/* CONTAGEM ANIMADA */
-/* ===================================== */
+    /* ===================================== */
+    /* ANIMAÇÃO PROFISSIONAL DAS MOEDAS */
+    /* ===================================== */
 
-function animateCoins(startValue, finalValue){
+    function animateCoins(startValue, finalValue){
 
-    let current = startValue;
+        return new Promise((resolve)=>{
 
-    const coinsElement =
-    document.getElementById("coins");
+            const coinsElement =
+            document.getElementById("coins");
 
-    /* SOM */
+            const countSound =
+            document.getElementById("coinLoop");
 
-    const countSound =
-    document.getElementById("countSound");
-
-    /* Reinicia som */
-
-    countSound.pause();
-
-    countSound.currentTime = 0;
-
-    /* Volume baixo */
-
-    countSound.volume = 0.3;
-
-    /* Toca uma vez */
-
-    countSound.play().catch(()=>{});
-
-    /* VELOCIDADE */
-
-    let speed = 15;
-
-    /* Se jackpot */
-
-    if(finalValue - startValue > 200){
-
-        speed = 5;
-
-    }
-
-    let counter =
-    setInterval(()=>{
-
-        /* Soma */
-
-        current++;
-
-        /* Atualiza */
-
-        coinsElement.innerHTML = current;
-
-        /* Finaliza */
-
-        if(current >= finalValue){
-
-            clearInterval(counter);
-
-            /* Para som */
+            /* Reinicia som */
 
             countSound.pause();
 
             countSound.currentTime = 0;
 
+            countSound.volume = 0.3;
+
+            countSound.play().catch(()=>{});
+
+            /* Valor atual */
+
+            let current = startValue;
+
+            /* Define direção */
+
+            let increment;
+
+            if(finalValue > startValue){
+
+                increment = 1;
+
+            }
+
+            else{
+
+                increment = -1;
+
+            }
+
+            /* Velocidade */
+
+            let speed = 10;
+
+            if(
+            Math.abs(finalValue - startValue)
+            > 300
+            ){
+
+                speed = 5;
+
+            }
+
+            /* Contagem */
+
+            let counter =
+            setInterval(()=>{
+
+                current += increment;
+
+                coinsElement.innerHTML = current;
+
+                /* Finaliza */
+
+                if(current == finalValue){
+
+                    clearInterval(counter);
+
+                    countSound.pause();
+
+                    countSound.currentTime = 0;
+
+                    resolve();
+
+                }
+
+            },speed);
+
+        });
+
+    }
+
+
+    /* ===================================== */
+    /* COR DAS MOEDAS */
+    /* ===================================== */
+
+    function updateCoinsColor(){
+
+        const coinsElement =
+        document.getElementById("coins");
+
+        if(coins < 0){
+
+            coinsElement.classList
+            .add("negative");
+
         }
 
-    },speed);
+        else{
 
-}
+            coinsElement.classList
+            .remove("negative");
 
-/* ===================================== */
-/* COR DAS MOEDAS */
-/* ===================================== */
-
-function updateCoinsColor(){
-
-    const coinsElement =
-    document.getElementById("coins");
-
-    if(coins < 0){
-
-        coinsElement.classList
-        .add("negative");
+        }
 
     }
-
-    else{
-
-        coinsElement.classList
-        .remove("negative");
-
-    }
-
-}

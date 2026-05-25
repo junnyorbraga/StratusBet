@@ -489,7 +489,7 @@ button:hover{
 
 .flashLose{
 
-    animation:flashLose .5s;
+    animation:flashLose .66s 3;
 
 }
 
