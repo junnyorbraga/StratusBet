@@ -225,11 +225,30 @@ async function result(){
     const r3 = document.getElementById("r3");
 
     /* ================================= */
-    /* DEFINE SE GANHA OU PERDE */
+    /* RESULTADO ALEATÓRIO DOS SLOTS */
     /* ================================= */
 
+    /* Emojis sorteados */
+    let e1 = emoji();
+    let e2 = emoji();
+    let e3 = emoji();
+
+    /* Define nos slots */
+    r1.innerHTML = e1;
+    r2.innerHTML = e2;
+    r3.innerHTML = e3;
+
+    /* Vitória somente com 3 🍀 */
     let ganhou =
-    Math.random() < 0.5;
+    e1 == "🍀" &&
+    e2 == "🍀" &&
+    e3 == "🍀";
+
+    /* ================================= */
+    /* DEFINE SE GANHA OU PERDE */
+    /* ================================= */
+    //let ganhou =
+    //Math.random() < 0.5;
 
     /* ================================= */
     /* GANHOU */
@@ -237,9 +256,9 @@ async function result(){
 
     if(ganhou){
 
-        r1.innerHTML = "🍀";
-        r2.innerHTML = "🍀";
-        r3.innerHTML = "🍀";
+        // r1.innerHTML = "🍀";
+        // r2.innerHTML = "🍀";
+        // r3.innerHTML = "🍀";
 
         /* Valor aleatório */
 
@@ -379,9 +398,9 @@ async function result(){
 
     else{
 
-        r1.innerHTML = "🍒";
-        r2.innerHTML = "🍒";
-        r3.innerHTML = "🧴";
+        //r1.innerHTML = "🍒";
+        //r2.innerHTML = "🍒";
+        //r3.innerHTML = "🧴";
 
         /* Valor aleatório */
 
