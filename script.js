@@ -256,7 +256,7 @@ async function result(){
             document.getElementById("warningScreen")
             .style.display = "flex";
 
-        },6000);
+        },3500);
 
         return;
 
@@ -513,7 +513,7 @@ async function result(){
         </div>
         `;
 
-    },3000);
+    },1500);
 
         return;
 }
