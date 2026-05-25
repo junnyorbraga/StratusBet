@@ -169,6 +169,9 @@ function spinAnimation(){
 
 function play(){
 
+    /*Limpa Mensagem*/
+    document.getElementById("message").innerHTML = "";
+
     /* Desativa botão */
     document.getElementById("playBtn").disabled = true;
 
@@ -423,7 +426,7 @@ async function result(){
         coins -= perda;
         playSounds("lose");
         setMessage(
-        `😨 QUASE! VOCÊ PERDEU ${perda}`,
+        `😨 QUASE! VOCÊ PERDEU ${perda} MOEDAS`,
         "yellow"
         );
 
@@ -491,32 +494,29 @@ async function result(){
 
         setTimeout(()=>{
 
-            document.getElementById("gameScreen")
-            .innerHTML = `
+        document.getElementById("gameScreen").innerHTML = `
 
-            <div class="debt-screen">
+        <div class="debt-screen">
 
-                <img
-                src="divida.png"
-                class="debt-image">
+        <img
+        src="divida.png"
+        class="debt-image">
 
-                <button
-                class="retry-btn"
-                onclick="location.reload()">
+        <button
+        class="retry-btn"
+        onclick="location.reload()">
 
-                    JOGAR NOVAMENTE
+            🎰 JOGAR NOVAMENTE
 
-                </button>
+        </button>
 
-            </div>
+        </div>
+        `;
 
-            `;
-
-        },3000);
+    },3000);
 
         return;
-
-    }
+}
 
     /* ================================= */
     /* LIBERA BOTÃO */
