@@ -506,7 +506,7 @@ async function result(){
         class="retry-btn"
         onclick="location.reload()">
 
-            🎰 JOGAR NOVAMENTE
+            JOGAR NOVAMENTE
 
         </button>
 
