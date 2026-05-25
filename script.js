@@ -224,35 +224,69 @@ async function result(){
     const r2 = document.getElementById("r2");
     const r3 = document.getElementById("r3");
 
-    /* ================================= */
-    /* RESULTADO ALEATÓRIO DOS SLOTS */
-    /* ================================= */
+        /* ================================= */
+        /* SISTEMA DE CHANCE CONTROLADA */
+        /* ================================= */
 
-    /* Emojis sorteados */
-    let e1 = emoji();
-    let e2 = emoji();
-    let e3 = emoji();
+        let chance =
+        Math.random();
 
-    /* Define nos slots */
-    r1.innerHTML = e1;
-    r2.innerHTML = e2;
-    r3.innerHTML = e3;
+        /* Emojis finais */
+        let e1;
+        let e2;
+        let e3;
 
-    /* Vitória somente com 3 🍀 */
-    let ganhou =
-    e1 == "🍀" &&
-    e2 == "🍀" &&
-    e3 == "🍀";
+        /* ================================= */
+        /* SUPER GANHO - 20% */
+        /* ================================= */
+        if(chance < 0.20){
+            e1 = "🍀";
+            e2 = "🍀";
+            e3 = "🍀";
+        }
 
-    /* ================================= */
-    /* DEFINE SE GANHA OU PERDE */
-    /* ================================= */
-    //let ganhou =
-    //Math.random() < 0.5;
+        /* ================================= */
+        /* QUASE GANHOU - 35% */
+        /* ================================= */
+        else if(chance < 0.55){
+            e1 = "🍀";
+            e2 = "🍀";
+            e3 = emoji();
 
-    /* ================================= */
-    /* GANHOU */
-    /* ================================= */
+            /* Evita vitória */
+            while(e3 == "🍀"){
+                e3 = emoji();
+            }
+        }
+        /* ================================= */
+        /* DERROTA NORMAL */
+        /* ================================= */
+        else{
+            e1 = emoji();
+            e2 = emoji();
+            e3 = emoji();
+        }
+
+        /* Mostra nos slots */
+        r1.innerHTML = e1;
+        r2.innerHTML = e2;
+        r3.innerHTML = e3;
+
+        /* Vitória */
+        let ganhou =
+        e1 == "🍀" &&
+        e2 == "🍀" &&
+        e3 == "🍀"
+
+        /* ================================= */
+        /* DEFINE SE GANHA OU PERDE */
+        /* ================================= */
+        //let ganhou =
+        //Math.random() < 0.5;
+
+        /* ================================= */
+        /* GANHOU */
+        /* ================================= */
 
     if(ganhou){
 
@@ -266,26 +300,21 @@ async function result(){
         Math.floor(Math.random() * 250) + 50;
 
        /* Guarda valor antigo */
-
        let oldCoins = coins;
 
        /* Soma prêmio */
-
         coins += premio;
         updateCoinsColor();
 
        /* Anima */
-
        await animateCoins(oldCoins, coins);;
 
        /* Atualiza tela */
-
         //document.getElementById("coins")
         //.innerHTML = coins;
 
         /* Jackpot aleatório */
-
-        if(premio >= 250){
+        if(premio >= 200){
 
             playSounds("jackpot");
 
@@ -300,29 +329,21 @@ async function result(){
             //.innerHTML = coins;
 
             /* CONFETE */
-
             let duration = 4000;
 
             let animationEnd =
             Date.now() + duration;
 
             let defaults = {
-
                 startVelocity: 30,
-
                 spread: 360,
-
                 ticks: 80,
-
                 zIndex: 9999
-
             };
 
             function randomInRange(min, max){
-
                 return Math.random()
                 * (max - min) + min;
-
             }
 
             let interval = setInterval(function(){
@@ -347,9 +368,7 @@ async function result(){
                     particleCount,
 
                     origin: {
-
                         x: randomInRange(0.1, 0.3),
-
                         y: Math.random() - 0.2
 
                     }
@@ -360,34 +379,22 @@ async function result(){
                 {},
                 defaults,
                 {
-
                     particleCount,
-
                     origin: {
-
                         x: randomInRange(0.7, 0.9),
-
                         y: Math.random() - 0.2
-
                     }
-
                 }));
-
             },250);
 
         }
 
         /* Vitória comum */
-
         else{
-
             playSounds("win");
-
-            setMessage(
-            `✅ VOCÊ GANHOU +${premio} MOEDAS`,
+            setMessage(`✅ VOCÊ GANHOU +${premio} MOEDAS`,
             "green"
             );
-
         }
 
     }
@@ -404,34 +411,25 @@ async function result(){
 
         /* Valor aleatório */
 
-        let perda =
-        Math.floor(Math.random() * 300) + 50;
+        let perda = Math.floor(Math.random() * 300) + 50;
 
         /* Remove moedas */
-
         coins -= perda;
         updateCoinsColor();
 
         /* Atualiza tela */
-
-        document.getElementById("coins")
-        .innerHTML = coins;
+        document.getElementById("coins").innerHTML = coins;
 
         playSounds("lose");
+
         /* FLASH VERMELHO */
-
-        const container =
-        document.querySelector(".container");
-
+        const container = document.querySelector(".container");
         container.classList.add("flashLose");
 
         /* Remove efeito */
-
         setTimeout(()=>{
-
         container.classList.remove("flashLose");
-
-        },500);
+        },800); //ESTAVA 500
 
         setMessage(
         `😨 VOCÊ PERDEU ${perda} MOEDAS`,
@@ -471,12 +469,9 @@ if(coins < 0){
     .add("redFlash");
 
     /* DESATIVA BOTÃO */
-
-    document.getElementById("playBtn")
-    .disabled = true;
+    document.getElementById("playBtn").disabled = true;
 
     /* ENCERRA JOGO */
-
     setTimeout(()=>{
 
         document.getElementById("gameScreen")
@@ -494,11 +489,8 @@ if(coins < 0){
             JOGAR NOVAMENTE
 
         </button>
-
     </div>
-
     `;
-
     },3000);
 
     return;
