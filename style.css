@@ -169,13 +169,39 @@ h1{
 
 .subtitle{
 
-    color:#ccc;
+    font-weight:bold;
 
-    margin-bottom:25px;
+    background:linear-gradient(
+        180deg,
+        #FFF8B0,
+        #FFD700,
+        #C89B00
+    );
 
-    line-height:1.5;
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    text-shadow:
+        0 0 10px rgba(255,215,0,.4);
 
 }
+
+.bonus{
+
+    color:#FFD700;
+
+    font-weight:bold;
+
+    font-size:1.15em;
+
+    text-shadow:
+        0 0 6px #FFD700,
+        0 0 12px #FFB700,
+        0 0 22px rgba(255,215,0,.8);
+
+}
+
 
 /* ===================================== */
 /* LOGO */
@@ -679,22 +705,44 @@ button:hover{
 
 @keyframes logoPulse{
 
-    0%{
+     0%{
+
         transform:
-        translateX(-10%)
-        scale(1);
+        scale(1)
+        rotate(0deg);
+
+    }
+
+    25%{
+
+        transform:
+        scale(1.06)
+        rotate(-2deg);
+
     }
 
     50%{
+
         transform:
-        translateX(10%)
-        scale(1.10);
+        scale(1.10)
+        rotate(0deg);
+
+    }
+
+    75%{
+
+        transform:
+        scale(1.06)
+        rotate(2deg);
+
     }
 
     100%{
+
         transform:
-        translateX(-10%)
-        scale(1);
+        scale(1)
+        rotate(0deg);
+
     }
 
 }
