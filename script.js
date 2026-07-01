@@ -486,36 +486,22 @@ async function result(){
 
         navigator.vibrate?.([300,100,300]);
 
-        document.body.classList
-        .add("redFlash");
+        document.body.classList.add("redFlash");
 
-        document.getElementById("playBtn")
-        .disabled = true;
+        document.getElementById("playBtn").disabled = true;
 
-        setTimeout(()=>{
+       setTimeout(()=>{
 
-        document.getElementById("gameScreen").innerHTML = `
+        // Esconde o jogo
+        document.getElementById("gameScreen").style.display = "none";
 
-        <div class="debt-screen">
-
-        <img
-        src="divida.png"
-        class="debt-image">
-
-        <button
-        class="retry-btn"
-        onclick="location.reload()">
-
-            JOGAR NOVAMENTE
-
-        </button>
-
-        </div>
-        `;
+        // Mostra a tela de dívida
+        document.getElementById("debtScreen").style.display = "flex";
 
     },1500);
 
-        return;
+    return;
+
 }
 
     /* ================================= */
@@ -638,3 +624,13 @@ async function result(){
         }
 
     }
+
+        /* ===================================== */
+        /* REINICIAR JOGO */
+        /* ===================================== */
+
+        function restartGame(){
+
+        location.reload();
+
+     }

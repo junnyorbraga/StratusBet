@@ -80,7 +80,14 @@ src="https://assets.mixkit.co/active_storage/sfx/471/471-preview.mp3">
 <div class="container" id="gameScreen">
 
     <!-- Título principal -->
-    <h1>🐯MEGA GANHO</h1>
+    <div class="logo-container">
+
+    <img
+    src="logo.png"
+    alt="$tratus Bet"
+    class="logo">
+
+    </div>
 
     <!-- Texto abaixo do título -->
     <div class="subtitle">
@@ -129,16 +136,32 @@ src="https://assets.mixkit.co/active_storage/sfx/471/471-preview.mp3">
 
 </div>
 
-<!-- ===================================== -->
-<!-- TELA FINAL -->
-<!-- ===================================== -->
+<!-- TELAS -->
 
+<!-- Tela final -->
 <div id="warningScreen">
 
-    <!-- Imagem final -->
     <img
     src="final.png"
     alt="Tela Final">
+
+</div>
+
+<!-- Tela dívida -->
+<div id="debtScreen">
+
+    <img
+    src="divida.png"
+    class="debt-image"
+    alt="Tela de dívida">
+
+    <button
+    class="retry-btn"
+    onclick="restartGame()">
+
+     JOGAR NOVAMENTE
+
+    </button>
 
 </div>
 

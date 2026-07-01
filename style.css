@@ -178,6 +178,34 @@ h1{
 }
 
 /* ===================================== */
+/* LOGO */
+/* ===================================== */
+
+.logo-container{
+
+    text-align:center;
+
+    margin-bottom:15px;
+
+}
+
+.logo{
+
+    width:80%;
+
+    max-width:260px;
+
+    height:auto;
+
+    animation:logoPulse 2s infinite ease-in-out;
+
+    filter:
+    drop-shadow(0 0 10px #ffd700)
+    drop-shadow(0 0 20px #00aaff);
+
+}
+
+/* ===================================== */
 /* CAIXA DAS MOEDAS */
 /* ===================================== */
 
@@ -199,7 +227,7 @@ h1{
 
 .coins{
 
-    font-size:60px;
+    font-size:clamp(42px,10vw,60px);
 
     color:#39ff14;
 
@@ -343,7 +371,7 @@ button:hover{
 
     margin-top:20px;
 
-    min-height:60px;
+    min-height:80px;
 
     font-size:24px;
 
@@ -396,15 +424,21 @@ button:hover{
 
 #warningScreen img{
 
-    width:100vw;
+   width:auto;
 
-    height:100vh;
+    height:auto;
 
-    object-fit:cover;
+    max-width:95vw;
 
-    border-radius:0;
+    max-height:95vh;
 
-    box-shadow:none;
+    object-fit:contain;
+
+    border-radius:18px;
+
+    box-shadow:
+    0 0 25px rgba(0,0,0,.8);
+
 
 }
 
@@ -530,136 +564,97 @@ button:hover{
 
 }
 
-/* ===================================== */
+/*====================================*/
 /* TELA DÍVIDA */
-/* ===================================== */
+/*====================================*/
 
-.debt-screen{
+#debtScreen{
 
-    position:relative;
+    display:none;
 
-    width:100%;
+    position:fixed;
 
-    max-width:420px;
+    inset:0;
 
-    display:flex;
-
-    flex-direction:column;
+    background:#000;
 
     justify-content:center;
 
     align-items:center;
-    
-    height:100%;
+
+    flex-direction:column;
+
+    z-index:99999;
 
 }
 
-.debt-image{
+/* imagem */
 
-    width:100%;
-    max-height:85vh;
+#debtScreen img{
+
+    width:auto;
+
+    max-width:95vw;
+
+    max-height:88vh;
+
     object-fit:contain;
-    border-radius:25px;
-    display:block;
-
-    /*max-width:420px;
-
-    border-radius:24px;
-
-    box-shadow:
-    0 0 20px red,
-    0 0 60px rgba(255,0,0,.5);*/
 
 }
 
-/* ===================================== */
-/* BOTÃO JOGAR NOVAMENTE */
-/* ===================================== */
+/* botão */
 
 .retry-btn{
 
-    position:absolute;
+    margin-top:-80px;
 
-    bottom:40px;
+    width:320px;
 
-    left:50%;
-
-    transform:translateX(-50%);
-
-    width:65%;
-
-    max-width:420px;
-
-    padding:14px 20px;
+    padding:16px;
 
     border:none;
 
-    border-radius:20px;
+    border-radius:18px;
 
     cursor:pointer;
 
-    font-size:20px;
+    font-size:22px;
 
     font-weight:bold;
 
-    letter-spacing:1px;
-
-    color:#ffffff;
-
-    /* AZUL NEON */
+    color:white;
 
     background:
+
     linear-gradient(
     180deg,
     #3aa8ff,
-    #007bff,
-    #0055ff
+    #0076ff,
+    #0050ff
     );
 
-    /* GLOW */
-
     box-shadow:
-    0 0 10px #00aaff,
-    0 0 25px #008cff,
-    0 0 50px rgba(0,140,255,.8);
 
-    /* TEXTO */
+    0 0 15px #00aaff,
 
-    text-shadow:
-    0 0 5px rgba(255,255,255,.8),
-    0 0 15px rgba(0,170,255,.9);
-
-    transition:.25s;
-
-    z-index:10;
+    0 0 40px #008cff;
 
     animation:pulseBlue 1.2s infinite;
 
 }
 
-/* ===================================== */
-/* HOVER */
-/* ===================================== */
-
 .retry-btn:hover{
 
-    transform:
-    translateX(-50%)
-    scale(1.05);
-
-    box-shadow:
-    0 0 20px #00aaff,
-    0 0 40px #008cff,
-    0 0 80px rgba(0,170,255,1);
+    transform:scale(1.05);
 
 }
 
-@keyframes pulseGold{
+@keyframes pulseBlue{
 
     0%{
 
         transform:
-        translateX(-50%)
+        translateY(-5%)
         scale(1);
 
     }
@@ -667,7 +662,7 @@ button:hover{
     50%{
 
         transform:
-        translateX(-50%)
+        translateY(5%)
         scale(1.04);
 
     }
@@ -675,9 +670,31 @@ button:hover{
     100%{
 
         transform:
-        translateX(-50%)
+        translateY(-5%)
         scale(1);
 
+    }
+
+}
+
+@keyframes logoPulse{
+
+    0%{
+        transform:
+        translateX(-10%)
+        scale(1);
+    }
+
+    50%{
+        transform:
+        translateX(10%)
+        scale(1.10);
+    }
+
+    100%{
+        transform:
+        translateX(-10%)
+        scale(1);
     }
 
 }
