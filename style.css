@@ -705,7 +705,7 @@ button:hover{
 
 @keyframes logoPulse{
 
-     0%{
+    0%{
 
         transform:
         scale(1)
@@ -713,11 +713,27 @@ button:hover{
 
     }
 
+    12.5%{
+
+        transform:
+        scale(1.03)
+        rotate(-0.6deg);
+
+    }
+
     25%{
 
         transform:
         scale(1.06)
-        rotate(-2deg);
+        rotate(-1.2deg);
+
+    }    
+
+    37.5%{
+
+        transform:
+        scale(1.10)
+        rotate(0deg);
 
     }
 
@@ -729,14 +745,25 @@ button:hover{
 
     }
 
+    62.5%{
+
+        transform:
+        scale(1.06)
+        rotate(0.6deg);
+
+    }
+
     75%{
 
         transform:
         scale(1.06)
-        rotate(2deg);
+        rotate(1.2deg);
 
     }
 
+
+
+    
     100%{
 
         transform:

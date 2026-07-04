@@ -1,3 +1,25 @@
+import {
+
+    registrarAcesso,
+    registrarPartida,
+    registrarGanho,
+    registrarDerrota,
+    registrarJackpot,
+    registrarGameOver,
+    registrarTelaFinal,
+    registrarJogarNovamente,
+    registrarSextaRodada
+
+} from "./firebase.js";
+
+registrarAcesso()
+    .then(() => {
+        console.log("Firebase conectado com sucesso!");
+    })
+    .catch((erro) => {
+        console.error("Erro Firebase:", erro);
+    });
+
 /* ===================================== */
 /* VARIÁVEIS GLOBAIS */
 /* ===================================== */
@@ -167,7 +189,9 @@ function spinAnimation(){
 /* FUNÇÃO PRINCIPAL */
 /* ===================================== */
 
-function play(){
+async function play(){
+
+    await registrarPartida();
 
     /*Limpa Mensagem*/
     document.getElementById("message").innerHTML = "";
@@ -211,6 +235,8 @@ async function result(){
     /* ================================= */
 
     if(rodada >= 6){
+
+        registrarSextaRodada();
 
         r1.innerHTML = "💀";
         r2.innerHTML = "💀";
@@ -367,6 +393,7 @@ async function result(){
         let oldCoins = coins;
 
         coins += premio;
+        registrarJackpot();
         playSounds("jackpot");
         setMessage(
         `🎉 SUPER GANHO!!! +${premio}`,
@@ -400,6 +427,7 @@ async function result(){
         let oldCoins = coins;
 
         coins += premio;
+        registrarGanho();
         playSounds("win");
         setMessage(
         `✅ VOCÊ GANHOU +${premio} MOEDAS`,
@@ -424,6 +452,7 @@ async function result(){
         let oldCoins = coins;
 
         coins -= perda;
+        registrarDerrota();
         playSounds("lose");
         setMessage(
         `😨 QUASE! VOCÊ PERDEU ${perda} MOEDAS`,
@@ -448,7 +477,7 @@ async function result(){
         let oldCoins = coins;
 
         coins -= perda;
-
+        registrarDerrota();
         updateCoinsColor(); 
         playSounds("lose");
          setMessage(
@@ -482,6 +511,7 @@ async function result(){
 
     if(coins < 0){
 
+        registrarGameOver();
         playSounds("gameover");
 
         navigator.vibrate?.([300,100,300]);
@@ -629,8 +659,13 @@ async function result(){
         /* REINICIAR JOGO */
         /* ===================================== */
 
-        function restartGame(){
+        async function restartGame(){
+
+        registrarJogarNovamente();
 
         location.reload();
 
      }
+
+window.play = play;
+window.restartGame = restartGame;
