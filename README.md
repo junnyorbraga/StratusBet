@@ -1,242 +1,305 @@
-# Jogo_Bio
+# 🎰 StratusBet - Campanha Educativa CIPA
 
-# 🎰 MEGA WIN — Campanha CIPA
+<p align="center">
 
-Projeto interativo desenvolvido para conscientização sobre vício em jogos e apostas, utilizando uma experiência simulada de cassino para demonstrar os mecanismos psicológicos presentes em plataformas de apostas online.
+<img src="logo.png" width="280">
 
----
+</p>
 
-# 📌 Objetivo
+## 📖 Sobre o projeto
 
-O jogo foi criado como parte de uma campanha da CIPA com foco em:
+O **StratusBet** é um jogo educativo desenvolvido para uma campanha da **CIPA**, com o objetivo de conscientizar os colaboradores sobre os riscos das apostas online, do vício em jogos de azar e seus impactos na saúde mental.
 
-- conscientização sobre jogos de azar,
-- saúde mental,
-- prevenção ao vício em apostas,
-- impacto psicológico das recompensas rápidas,
-- incentivo à busca por apoio psicológico.
-
-A proposta utiliza:
-- pequenas vitórias iniciais,
-- sensação de recompensa,
-- efeito de “quase ganhou”,
-- perda total no final,
-
-para reproduzir o comportamento emocional frequentemente explorado em aplicativos de apostas.
+O projeto simula uma plataforma de apostas, utilizando mecanismos psicológicos semelhantes aos encontrados em cassinos virtuais, conduzindo o jogador até uma perda inevitável para promover reflexão e conscientização.
 
 ---
 
-# 🧠 Conceitos simulados
+# 🎯 Objetivos
 
-O projeto simula técnicas psicológicas utilizadas em jogos de azar:
-
-- Reforço positivo
-- Recompensa intermitente
-- Ilusão de controle
-- Near Miss Effect ("quase ganhou")
-- Retenção comportamental
-- Impacto emocional da perda
+- Demonstrar como plataformas de apostas utilizam recompensas para prender o usuário.
+- Simular o efeito psicológico do "quase ganhou".
+- Mostrar o impacto emocional da perda total.
+- Incentivar a reflexão sobre o vício em apostas.
+- Coletar métricas anônimas para análise da campanha da CIPA.
 
 ---
 
-# 🛠 Tecnologias utilizadas
+# 🚀 Funcionalidades
 
-- HTML5
-- CSS3
-- JavaScript Vanilla
-- GitHub Pages
+## 🎮 Jogo
+
+- Crédito inicial de 100 moedas
+- Sistema de rodadas
+- Ganhos aleatórios
+- Jackpots
+- Quase vitória
+- Derrotas
+- Game Over
+- Tela Final educativa
+- Tela "Jogar Novamente"
+- Sons
+- Vibração (mobile)
+- Confetes
+- Interface responsiva
 
 ---
 
-# 📂 Estrutura do projeto
+## ☁️ Firebase
 
-```text
-Jogo_Bio/
+O projeto utiliza **Firebase Firestore** para registrar estatísticas em tempo real.
+
+São armazenados:
+
+- Jogadores únicos
+- Total de acessos
+- Partidas realizadas
+- Ganhos
+- Derrotas
+- Jackpots
+- Game Over
+- Tela Final
+- Jogar Novamente
+- Sexta Rodada
+
+Cada jogador recebe um identificador único armazenado na sessão do navegador.
+
+---
+
+## 📊 Dashboard Administrativo
+
+Foi desenvolvido um painel administrativo em tempo real.
+
+### Resumo Geral
+
+- 👥 Jogadores únicos
+- 👁️ Acessos
+- 🎮 Partidas
+
+### Resultados
+
+- 💰 Ganhos
+- 💸 Derrotas
+- 🏆 Jackpots
+
+### Engajamento
+
+- ☠️ Game Over
+- 🔁 Jogar Novamente
+- 🏁 Tela Final
+- 🎯 Sexta Rodada
+
+### Indicadores
+
+- Média de partidas por jogador
+- Taxa de vitória
+- Taxa de Jackpot
+- Taxa de Game Over
+- Conversão para Tela Final
+
+### Ranking
+
+Top 3 jogadores por:
+
+- número de acessos
+- quantidade de "Jogar Novamente"
+
+### Recursos
+
+- Atualização em tempo real
+- Gráficos com Chart.js
+- Botão para limpar dados do Firebase
+
+---
+
+# 📁 Estrutura do projeto
+
+```
+StratusBet/
+
 │
 ├── index.html
 ├── style.css
 ├── script.js
+├── firebase.js
+│
+├── dashboard.html
+├── dashboard.css
+├── dashboard.js
+│
+├── logo.png
 ├── final.png
-└── README.md
+├── divida.png
+├── musicaJogo.mp3
+│
+├── README.md
+└── .github/
+    └── workflows/
+        └── pages.yml
 ```
 
 ---
 
-# 📄 Arquivos
+# 🛠 Tecnologias Utilizadas
 
-## `index.html`
-
-Responsável pela:
-- estrutura da aplicação,
-- elementos visuais,
-- slots,
-- botão,
-- tela final,
-- áudios.
+- HTML5
+- CSS3
+- JavaScript (ES6 Modules)
+- Firebase Firestore
+- Chart.js
+- GitHub Pages
+- GitHub Actions
 
 ---
 
-## `style.css`
+# ☁️ Hospedagem
 
-Responsável pela:
-- identidade visual,
-- efeitos neon,
-- animações,
-- responsividade,
-- feedback visual.
+## Jogo
 
----
+```
+https://junnyorbraga.github.io/StratusBet/
+```
 
-## `script.js`
+## Dashboard
 
-Responsável pela:
-- lógica do jogo,
-- gerenciamento de estado,
-- controle das rodadas,
-- sons,
-- vibração,
-- manipulação do DOM,
-- fluxo de vitória e derrota.
+```
+https://junnyorbraga.github.io/StratusBet/dashboard.html
+```
 
 ---
 
-# 🎮 Funcionamento
+# 📊 Banco de Dados
 
-## Rodadas iniciais
+Firestore
 
-As primeiras rodadas foram propositalmente programadas para gerar vitórias.
+Coleções utilizadas:
 
-Objetivo:
-- criar sensação de confiança,
-- aumentar engajamento,
-- reproduzir estratégias utilizadas em plataformas de aposta.
+```
+estatisticas
+```
+
+Documento:
+
+```
+jogo
+```
+
+Coleção:
+
+```
+jogadores
+```
+
+Cada jogador possui um documento próprio contendo:
+
+- acessos
+- partidas
+- ganhos
+- derrotas
+- jackpots
+- gameOver
+- jogarNovamente
+- telaFinal
+- sextaRodada
+- primeiraVisita
+- ultimaVisita
 
 ---
 
-## Quase ganhou
+# 🔄 Fluxo do jogo
 
-Na quarta rodada:
-- o jogador perde parcialmente,
-- ocorre o efeito psicológico de “quase vitória”.
-
----
-
-## Derrota final
-
-Na última rodada:
-- o jogador perde tudo,
-- sons e efeitos visuais reforçam o impacto emocional,
-- a tela educativa é exibida automaticamente.
+1. Jogador recebe 100 moedas
+2. Primeiras rodadas estimulam o engajamento
+3. O jogo alterna entre ganhos e perdas
+4. O jogador perde todas as moedas
+5. É exibida uma mensagem educativa
+6. O jogador pode optar por "Jogar Novamente"
+7. Todas as ações são registradas no Firebase
 
 ---
 
-# 🔊 Recursos implementados
+# 📈 Métricas coletadas
 
-- sons de vitória e derrota,
-- vibração no celular,
-- animações dos slots,
-- fundo pulsante vermelho,
-- tela final responsiva,
-- experiência mobile-first.
+- Número de jogadores únicos
+- Quantidade de acessos
+- Número de partidas
+- Vitórias
+- Derrotas
+- Jackpots
+- Game Over
+- Tela Final
+- Recomeços do jogo
+- Média de partidas por jogador
+- Taxa de vitória
+- Taxa de Jackpot
 
 ---
 
 # 📱 Responsividade
 
 O projeto foi desenvolvido com foco em:
-- celulares,
-- leitura via QR Code,
-- rápida interação.
+
+- Smartphones
+- Tablets
+- Desktop
+- Leitura via QR Code
 
 ---
 
-# 🌐 Hospedagem
+# 🔒 Segurança
 
-O projeto pode ser hospedado em:
+Atualmente:
 
-- GitHub Pages
-- Netlify
-- SharePoint
-- OneDrive corporativo
+- Firestore protegido por regras de segurança
+- Dashboard com botão de limpeza dos dados
+- Dados anônimos (nenhuma informação pessoal é armazenada)
 
----
+### Melhorias futuras
 
-# 🚀 Como executar localmente
-
-## 1. Baixe os arquivos
-
-Estrutura:
-
-```text
-index.html
-style.css
-script.js
-final.png
-```
+- Firebase Authentication
+- Dashboard protegida por login
+- Apenas administradores poderão limpar os dados
+- Exportação para Excel e CSV
+- Histórico diário da campanha
 
 ---
 
-## 2. Abra o arquivo
+# 💡 Objetivo Educacional
 
-```text
-index.html
-```
+Este projeto não possui finalidade comercial.
 
-em qualquer navegador.
+Foi desenvolvido exclusivamente para ações educativas da **CIPA**, abordando:
 
----
-
-# 🌍 Publicação no GitHub Pages
-
-1. Criar repositório
-2. Fazer upload dos arquivos
-3. Acessar:
-
-```text
-Settings > Pages
-```
-
-4. Selecionar:
-
-```text
-Deploy from a branch
-```
-
-5. Escolher:
-
-```text
-main / root
-```
-
----
-
-# 🎯 Objetivo educativo
-
-Este projeto NÃO possui finalidade comercial.
-
-Seu objetivo é:
-- conscientização,
-- educação preventiva,
-- promoção da saúde mental,
-- apoio às ações da CIPA.
-
----
-
-# ⚠️ Aviso
-
-O projeto simula mecanismos psicológicos utilizados em apostas online apenas para fins educativos e de conscientização.
+- Saúde Mental
+- Jogos de Azar
+- Dependência em Apostas
+- Educação Preventiva
 
 ---
 
 # 👨‍💻 Autor
 
-Projeto desenvolvido para campanha educativa da CIPA.
+**Junnyor Braga**
+
+Projeto desenvolvido como parte de uma campanha educativa da CIPA utilizando tecnologias web modernas e Firebase.
 
 ---
 
-# 💚 Saúde mental importa
+# ❤️ Agradecimentos
 
-> Sua saúde mental vale mais que qualquer jogo.
+- CIPA
+- Firebase
+- GitHub
+- Chart.js
+- Comunidade Open Source
 
-Teste deploy 04/07
-Teste deploy 05/07
+---
+
+# 📜 Licença
+
+Projeto desenvolvido exclusivamente para fins educacionais e de conscientização.
+
+Não destinado para uso comercial.
+
+---
+
+> **"Sua saúde mental vale mais do que qualquer aposta."**
