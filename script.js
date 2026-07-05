@@ -281,6 +281,7 @@ async function result(){
             .style.display = "none";
             document.getElementById("warningScreen")
             .style.display = "flex";
+            registrarTelaFinal();
 
         },3500);
 

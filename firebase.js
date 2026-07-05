@@ -33,7 +33,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
+export const db = getFirestore(app);
 
 /* ===================================== */
 /* CONFIGURAÇÕES */
@@ -109,13 +109,13 @@ function log(...msg){
 
 function getPlayerId(){
 
-    let id = localStorage.getItem("playerId");
+    let id = sessionStorage.getItem("playerId");
 
     if(!id){
 
         id = crypto.randomUUID();
 
-        localStorage.setItem("playerId",id);
+        sessionStorage.setItem("playerId",id);
 
     }
 
@@ -220,6 +220,8 @@ export async function registrarAcesso(){
 
             ultimaVisita: serverTimestamp(),
 
+            acessos:1,
+
             partidas:0,
 
             ganhos:0,
@@ -245,6 +247,8 @@ export async function registrarAcesso(){
     else{
 
         await updateDoc(ref,{
+
+            acessos: increment(1),
 
             ultimaVisita: serverTimestamp()
 

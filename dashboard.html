@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - Stratus Bet</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+
+</head>
+
+<body>
+
+    <!-- ===================================== -->
+    <!-- CABEÇALHO -->
+    <!-- ===================================== -->
+
+    <header class="header">
+
+        <div class="logo-area">
+
+            <img
+                src="logo.png"
+                class="logo">
+
+            <div>
+
+                <h1>Dashboard</h1>
+
+                <p class="subtitle">
+
+                    Estatísticas em tempo real
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="header-info">
+
+            <div class="status">
+
+                🟢 Online
+
+            </div>
+
+            <div
+                id="lastUpdate"
+                class="last-update">
+
+                Atualizando...
+
+            </div>
+
+            <button
+                id="limparDados"
+                class="clear-button"
+                type="button">
+
+                Limpar dados
+
+            </button>
+
+        </div>
+
+    </header>
+
+    <!-- ===================================== -->
+    <!-- RESUMO GERAL -->
+    <!-- ===================================== -->
+
+    <section>
+
+        <h2 class="section-title">
+
+            📊 Resumo Geral
+
+        </h2>
+
+        <div class="cards">
+
+            <div class="card blue">
+
+                <div class="icon">👥</div>
+
+                <span id="jogadores">0</span>
+
+                <p>Jogadores Únicos</p>
+
+            </div>
+
+            <div class="card cyan">
+
+                <div class="icon">👁️</div>
+
+                <span id="acessos">0</span>
+
+                <p>Acessos</p>
+
+            </div>
+
+            <div class="card green">
+
+                <div class="icon">🎮</div>
+
+                <span id="partidas">0</span>
+
+                <p>Partidas</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===================================== -->
+    <!-- TOP USUARIOS -->
+    <!-- ===================================== -->
+
+    <section>
+
+        <h2 class="section-title">
+
+            Top 3 usuarios por acessos
+
+        </h2>
+
+        <div
+            id="topUsuarios"
+            class="top-users">
+
+            <div class="empty-state">
+
+                Carregando usuarios...
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===================================== -->
+    <!-- RESULTADOS -->
+    <!-- ===================================== -->
+
+    <section>
+
+        <h2 class="section-title">
+
+            🎲 Resultados
+
+        </h2>
+
+        <div class="cards">
+
+            <div class="card gold">
+
+                <div class="icon">💰</div>
+
+                <span id="ganhos">0</span>
+
+                <p>Ganhos</p>
+
+            </div>
+
+            <div class="card red">
+
+                <div class="icon">💸</div>
+
+                <span id="derrotas">0</span>
+
+                <p>Derrotas</p>
+
+            </div>
+
+            <div class="card jackpot">
+
+                <div class="icon">🏆</div>
+
+                <span id="jackpots">0</span>
+
+                <p>Jackpots</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===================================== -->
+    <!-- ENGAJAMENTO -->
+    <!-- ===================================== -->
+
+    <section>
+
+        <h2 class="section-title">
+
+            📈 Engajamento
+
+        </h2>
+
+        <div class="cards">
+
+            <div class="card danger">
+
+                <div class="icon">☠️</div>
+
+                <span id="gameOver">0</span>
+
+                <p>Game Over</p>
+
+            </div>
+
+            <div class="card orange">
+
+                <div class="icon">🔁</div>
+
+                <span id="jogarNovamente">0</span>
+
+                <p>Jogar Novamente</p>
+
+            </div>
+
+            <div class="card purple">
+
+                <div class="icon">🏁</div>
+
+                <span id="telaFinal">0</span>
+
+                <p>Tela Final</p>
+
+            </div>
+
+            <div class="card teal">
+
+                <div class="icon">🎯</div>
+
+                <span id="sextaRodada">0</span>
+
+                <p>Sexta Rodada</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===================================== -->
+    <!-- INDICADORES -->
+    <!-- ===================================== -->
+
+    <section>
+
+        <h2 class="section-title">
+
+            📊 Indicadores
+
+        </h2>
+
+        <div class="cards">
+
+            <div class="card metric">
+
+                <span id="mediaPartidas">
+
+                    0
+
+                </span>
+
+                <p>Média de Partidas / Jogador</p>
+
+            </div>
+
+            <div class="card metric">
+
+                <span id="taxaVitoria">
+
+                    0%
+
+                </span>
+
+                <p>Taxa de Vitória</p>
+
+            </div>
+
+            <div class="card metric">
+
+                <span id="taxaJackpot">
+
+                    0%
+
+                </span>
+
+                <p>Taxa de Jackpot</p>
+
+            </div>
+
+            <div class="card metric">
+
+                <span id="taxaGameOver">
+
+                    0%
+
+                </span>
+
+                <p>Taxa de Game Over</p>
+
+            </div>
+
+            <div class="card metric">
+
+                <span id="taxaConversao">
+
+                    0%
+
+                </span>
+
+                <p>Conversão Tela Final</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===================================== -->
+    <!-- GRÁFICOS -->
+    <!-- ===================================== -->
+
+    <section>
+
+        <h2 class="section-title">
+
+            📈 Estatísticas Visuais
+
+        </h2>
+
+        <div class="charts">
+
+            <div class="chart-card">
+
+                <canvas id="barChart"></canvas>
+
+            </div>
+
+            <div class="chart-card">
+
+                <canvas id="pieChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===================================== -->
+    <!-- RODAPÉ -->
+    <!-- ===================================== -->
+
+    <footer>
+
+        Stratus Bet Dashboard
+
+        <br>
+
+        Desenvolvido por Junnyor Braga
+
+    </footer>
+
+    <!-- Chart.js -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Dashboard -->
+
+    <script
+        type="module"
+        src="dashboard.js">
+
+    </script>
+
+</body>
+
+</html>
