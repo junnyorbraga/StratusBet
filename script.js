@@ -662,7 +662,7 @@ async function result(){
 
         async function restartGame(){
 
-        registrarJogarNovamente();
+        await registrarJogarNovamente();
 
         location.reload();
 

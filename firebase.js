@@ -276,50 +276,50 @@ export async function registrarAcesso(){
 /* EVENTOS DO JOGO */
 /* ===================================== */
 
-export function registrarPartida(){
+export async function registrarPartida(){
 
-    incrementar(CAMPO.PARTIDAS);
-
-}
-
-export function registrarGanho(){
-
-    incrementar(CAMPO.GANHOS);
+    await incrementar(CAMPO.PARTIDAS);
 
 }
 
-export function registrarDerrota(){
+export async function registrarGanho(){
 
-    incrementar(CAMPO.DERROTAS);
-
-}
-
-export function registrarJackpot(){
-
-    incrementar(CAMPO.JACKPOTS);
+    await incrementar(CAMPO.GANHOS);
 
 }
 
-export function registrarGameOver(){
+export async function registrarDerrota(){
 
-    incrementar(CAMPO.GAMEOVER);
-
-}
-
-export function registrarTelaFinal(){
-
-    incrementar(CAMPO.TELAFINAL);
+    await incrementar(CAMPO.DERROTAS);
 
 }
 
-export function registrarJogarNovamente(){
+export async function registrarJackpot(){
 
-    incrementar(CAMPO.JOGARNOVAMENTE);
+    await incrementar(CAMPO.JACKPOTS);
 
 }
 
-export function registrarSextaRodada(){
+export async function registrarGameOver(){
 
-    incrementar(CAMPO.SEXTARODADA);
+    await incrementar(CAMPO.GAMEOVER);
+
+}
+
+export async function registrarTelaFinal(){
+
+    await incrementar(CAMPO.TELAFINAL);
+
+}
+
+export async function registrarJogarNovamente(){
+
+    await incrementar(CAMPO.JOGARNOVAMENTE);
+
+}
+
+export async function registrarSextaRodada(){
+
+    await incrementar(CAMPO.SEXTARODADA);
 
 }
