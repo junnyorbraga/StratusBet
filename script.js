@@ -1,4 +1,4 @@
-import {
+/* import {
 
     registrarAcesso,
     registrarPartida,
@@ -19,6 +19,7 @@ registrarAcesso()
     .catch((erro) => {
         console.error("Erro Firebase:", erro);
     });
+*/ 
 
 /* ===================================== */
 /* VARIÁVEIS GLOBAIS */
@@ -191,7 +192,7 @@ function spinAnimation(){
 
 async function play(){
 
-    await registrarPartida();
+    //await registrarPartida();
 
     /*Limpa Mensagem*/
     document.getElementById("message").innerHTML = "";
@@ -236,7 +237,7 @@ async function result(){
 
     if(rodada >= 6){
 
-        registrarSextaRodada();
+       // registrarSextaRodada();
 
         r1.innerHTML = "💀";
         r2.innerHTML = "💀";
@@ -281,7 +282,7 @@ async function result(){
             .style.display = "none";
             document.getElementById("warningScreen")
             .style.display = "flex";
-            registrarTelaFinal();
+            //registrarTelaFinal();
 
         },3500);
 
@@ -394,7 +395,7 @@ async function result(){
         let oldCoins = coins;
 
         coins += premio;
-        registrarJackpot();
+        //registrarJackpot();
         playSounds("jackpot");
         setMessage(
         `🎉 SUPER GANHO!!! +${premio}`,
@@ -428,7 +429,7 @@ async function result(){
         let oldCoins = coins;
 
         coins += premio;
-        registrarGanho();
+        //registrarGanho();
         playSounds("win");
         setMessage(
         `✅ VOCÊ GANHOU +${premio} MOEDAS`,
@@ -453,7 +454,7 @@ async function result(){
         let oldCoins = coins;
 
         coins -= perda;
-        registrarDerrota();
+       // registrarDerrota();
         playSounds("lose");
         setMessage(
         `😨 QUASE! VOCÊ PERDEU ${perda} MOEDAS`,
@@ -478,7 +479,7 @@ async function result(){
         let oldCoins = coins;
 
         coins -= perda;
-        registrarDerrota();
+       // registrarDerrota();
         updateCoinsColor(); 
         playSounds("lose");
          setMessage(
@@ -512,7 +513,7 @@ async function result(){
 
     if(coins < 0){
 
-        registrarGameOver();
+        //registrarGameOver();
         playSounds("gameover");
 
         navigator.vibrate?.([300,100,300]);
@@ -662,7 +663,7 @@ async function result(){
 
         async function restartGame(){
 
-        await registrarJogarNovamente();
+       // await registrarJogarNovamente();
 
         location.reload();
 
